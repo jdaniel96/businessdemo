@@ -28,7 +28,10 @@ export const addProduct = async (data) => {
     const photoUrl = await uploadProductPhoto(data.productPhoto);
     const res = await addDoc(productCollection, {
       ...data,
-      productPhoto: photoUrl,
+      productPhoto:
+        photoUrl ??
+        "https://joadre.com/wp-content/uploads/2019/02/no-image.jpg",
+      createdOn: Date.now(),
     });
     if (res) {
       alert("document added");
