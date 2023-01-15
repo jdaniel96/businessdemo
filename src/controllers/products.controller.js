@@ -7,6 +7,7 @@ import {
   updateDoc,
   getDoc,
 } from "firebase/firestore/lite";
+import { uploadProductPhoto } from "../utils/uploadPhoto";
 
 /**
  * Takes an object with:
@@ -21,23 +22,34 @@ import {
  * @throws  error code and error message
  */
 
-export const addProduct = async (
-  data = {
-    productName: "test name",
-    productPhoto: "test photo",
-    productPrice: 1,
-    productDescription: "test description",
+export const addProduct = async (data) => {
+  try {
+    const productCollection = collection(db, "products");
+    const photoUrl = await uploadProductPhoto(data.productPhoto);
+    const res = await addDoc(productCollection, {
+      ...data,
+      productPhoto: photoUrl,
+    });
+    if (res) {
+      alert("document added");
+    }
+  } catch (err) {
+    console.log(err, err.message, err.code);
+    alert("❌ something wrong adding a product");
   }
-) => {
-  const productCollection = collection(db, "products");
-  const res = await addDoc(productCollection, data);
-  alert("document added");
 };
 
 export const getSpecificProduct = async (id) => {
   const productRef = doc(db, "products", id);
   const product = (await getDoc(productRef)).data();
   return product;
+};
+
+export const buyProduct = async (id, quantity) => {
+  const productRef = doc(db, "products", id);
+  const product = (await getDoc(productRef)).data();
+  console.log(product.stock, "stock");
+  updateProduct(id, { ...product, stock: product.stock - quantity });
 };
 
 /**
@@ -49,7 +61,7 @@ export const getSpecificProduct = async (id) => {
 export const deleteProduct = async (id) => {
   const product = doc(db, "products", id);
   const res = await deleteDoc(product);
-  alert("producto eliminado");
+  alert("producto eliminado ");
 };
 
 /**
@@ -59,11 +71,8 @@ export const deleteProduct = async (id) => {
  * @param {object} product object with the new field to update in the database
  */
 
-export const updateProduct = async (
-  id,
-  data = { productPhoto: "I changed it" }
-) => {
+export const updateProduct = async (id, data) => {
   const updatedDoc = doc(db, "products", id);
   const res = await updateDoc(updatedDoc, data);
-  alert("Producto Actualizado");
+  if (res) return true; //use boolean to display alerts
 };

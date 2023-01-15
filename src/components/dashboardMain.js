@@ -1,7 +1,8 @@
 import React from "react"
-import { StockReport, TopSelling } from "./dashboardItems";
+import { ItemsCrud, StockReport, TopSelling } from "./dashboardItems";
 
-function DashboardMain () {
+
+export const DashboardInicio = () => {
     return (
         <main className="container-fluid">
             <div className="d-flex mt-5 justify-content-evenly" style={{height: "25rem", width: "100%", backgroundColor: "#f8f9fd"}}>
@@ -14,4 +15,10 @@ function DashboardMain () {
     )
 }
 
-export default DashboardMain;
+export const Products = () => {
+    return (
+        <main className="container-fluid" style={{minHeight: "100vh"}}>
+            <ItemsCrud/>
+        </main>
+    )
+}
