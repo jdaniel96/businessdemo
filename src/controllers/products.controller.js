@@ -11,13 +11,13 @@ import { uploadProductPhoto } from "../utils/uploadPhoto";
 
 /**
  * Takes an object with:
- * @param {{productName:string, productPhoto:string, productDescription:string, productPrice:number}} data
+ * @param {{productName:string, productPhoto:string, productDescription:string, productPrice:number, stock:number}} data
  * the data has an object containing:
  * @param {string} productName name of the product
  * @param {string} productPhoto the url of the photo
  * @param {number} productPrice the price of the product
  * @param {string} productDescription description of product
- *
+ *@param {number} stock quantity off available product
  * @returns reference of the document created
  * @throws  error code and error message
  */

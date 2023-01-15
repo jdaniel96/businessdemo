@@ -4,9 +4,9 @@ import { addDoc, collection } from "firebase/firestore/lite";
 import { db } from "../config/db";
 
 export const registerUser = async (
-  email = "test@gmail.com",
-  password = "juan123456789072",
-  name = "juan Daniel"
+  email = "Admin@gmail.com",
+  password = "Admin",
+  name = "Admin 1"
 ) => {
   const auth = getAuth(app);
   const adminUserCollection = collection(db, "adminUsers");
