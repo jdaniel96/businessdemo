@@ -16,6 +16,7 @@ function Dashboard() {
           role="tabpanel"
           aria-labelledby="pills-home-tab"
           tabindex="0"
+          style={{ margin: 0, padding: 0 }}
         >
           <DashboardInicio />
         </div>
@@ -25,6 +26,7 @@ function Dashboard() {
           role="tabpanel"
           aria-labelledby="pills-products-tab"
           tabindex="0"
+          style={{ margin: 0, padding: 0 }}
         >
           <Products />
         </div>

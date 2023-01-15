@@ -3,10 +3,11 @@ import HomePage from "./views/homePage";
 import ProductPage from "./views/productPage";
 import PaymentPage from "./views/paymentPage";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { app } from "./libs/firebase";
 import Dashboard from "./views/dashboard";
 import { analytics } from "./libs/firebase";
+import { getTotalSalesEarnings } from "./controllers/sales.controller";
 function App() {
   const [user, setUser] = useState([]);
   const auth = getAuth(app);
@@ -19,7 +20,10 @@ function App() {
     }
   });
 
-  console.log("analytics", analytics);
+  useEffect(() => {
+    getTotalSalesEarnings();
+  }, []);
+
   return (
     <>
       <Routes>

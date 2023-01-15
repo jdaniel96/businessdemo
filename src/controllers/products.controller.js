@@ -8,6 +8,7 @@ import {
   getDoc,
 } from "firebase/firestore/lite";
 import { uploadProductPhoto } from "../utils/uploadPhoto";
+import { registerSale } from "./sales.controller";
 
 /**
  * Takes an object with:
@@ -48,8 +49,18 @@ export const getSpecificProduct = async (id) => {
 export const buyProduct = async (id, quantity) => {
   const productRef = doc(db, "products", id);
   const product = (await getDoc(productRef)).data();
-  console.log(product.stock, "stock");
-  updateProduct(id, { ...product, stock: product.stock - quantity });
+
+  try {
+    await updateProduct(id, { ...product, stock: product.stock - quantity });
+    const response = await registerSale({
+      productName: product.productName,
+      productPrice: product.productPrice,
+      productPhoto: product.productPhoto,
+      productQuantity: quantity,
+    });
+  } catch (err) {
+    alert("Something went wrong ❌", err);
+  }
 };
 
 /**
@@ -59,9 +70,13 @@ export const buyProduct = async (id, quantity) => {
  */
 
 export const deleteProduct = async (id) => {
-  const product = doc(db, "products", id);
-  const res = await deleteDoc(product);
-  alert("producto eliminado ");
+  try {
+    const product = doc(db, "products", id);
+    const res = await deleteDoc(product);
+    alert("producto eliminado ");
+  } catch (err) {
+    alert("something went wrong ❌", err);
+  }
 };
 
 /**
