@@ -1,13 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import NavBar from "../components/navBar";
 import {AiFillStar, AiOutlineHeart} from "react-icons/ai";
 import { useParams } from "react-router-dom";
-import { ItemsTest } from "../testInfo/itemsTest";
+import { getSpecificProduct } from "../controllers/products.controller";
+import { async } from "@firebase/util";
 
-function ProductPage ({title, note, description, price, img}) {
+function ProductPage () {
+    const [product, setProduct] = useState({});
+    
+
     const {id} = useParams();
-    const producto = ItemsTest.find((item) => item.id == id)
-    console.log(producto)
+    
+    useEffect(()=>{
+        const productHand = async () => {
+            const response = await getSpecificProduct(id)
+            if(response) setProduct(response)
+            console.log("pPage", response)
+        } 
+        productHand();
+    },[])
+    
+    console.log("pproduct",product)
     return (
         <main>
             <NavBar/>
@@ -22,20 +35,19 @@ function ProductPage ({title, note, description, price, img}) {
                 <div class="row row-cols-1 row-cols-lg-2 p-5">
                     <div className="col d-flex justify-content-center">
                         <div className="rounded-3 d-flex justify-content-center align-items-center" style={{height: "38rem", width: "43rem", backgroundColor: "#f6f6f6"}}>
-                            <img src={producto.img}style={{height: "95%"}} />
+                            <img src={product.productPhoto}style={{height: "95%"}} />
                         </div>
                     </div>
                     <div className="col d-flex justify-content-center align-items-center">
                         <div style={{height: "43rem", width: "35rem"}}>
-                        <h2>{producto.title}</h2>
-                        <p><b>Nota: </b>{producto.note}</p>
+                        <h2>{product.productName}</h2>
                         <b>Sobre este artículo</b> 
-                        <p>{producto.description}</p>
+                        <p>{product.productDescription}</p>
                         <div className="d-flex">
                             <p><AiFillStar style={{color: "#09ab0c"}}/><AiFillStar style={{color: "#09ab0c"}}/><AiFillStar style={{color: "#09ab0c"}}/><AiFillStar style={{color: "#09ab0c"}}/><AiFillStar style={{color: "#09ab0c"}}/>(121)</p>
                         </div>
                         <hr></hr>
-                        <h2>{producto.price}</h2>
+                        <h2>${product.productPrice}</h2>
                         <p>Lorem ipsum dolor sit amet</p>
                         <hr></hr>
                         <div className="container-fluid">

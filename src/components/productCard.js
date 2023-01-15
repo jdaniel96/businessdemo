@@ -2,7 +2,7 @@ import React from "react";
 import {AiFillStar, AiOutlineHeart} from "react-icons/ai";
 import { Link } from "react-router-dom";
 
-function ProductItems ({id,title, note, price, img}) {
+function ProductItems ({id,title,description, price, img}) {
     return (
         <div className="col d-flex justify-content-center align-items-center">
             <div className="card border border-0" style={{width: "21rem"}}>
@@ -14,7 +14,7 @@ function ProductItems ({id,title, note, price, img}) {
                     <div className="d-flex justify-content-between" style={{width: "100%"}}>
                     <Link to={`/product/${id}`}><h5>{title}</h5></Link><b><sup>$</sup>{price}</b>
                 </div>
-                <p>{note}</p>
+                <p>{description}</p>
                 <div className="d-flex">
                     <p><AiFillStar style={{color: "#09ab0c"}}/><AiFillStar style={{color: "#09ab0c"}}/><AiFillStar style={{color: "#09ab0c"}}/><AiFillStar style={{color: "#09ab0c"}}/><AiFillStar style={{color: "#09ab0c"}}/>(121)</p>
                 </div>
