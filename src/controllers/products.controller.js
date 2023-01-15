@@ -45,6 +45,13 @@ export const getSpecificProduct = async (id) => {
   return product;
 };
 
+export const buyProduct = async (id, quantity) => {
+  const productRef = doc(db, "products", id);
+  const product = (await getDoc(productRef)).data();
+  console.log(product.stock, "stock");
+  updateProduct(id, { ...product, stock: product.stock - quantity });
+};
+
 /**
  * Takes an object with:
  * the data has an object containing:
@@ -67,6 +74,5 @@ export const deleteProduct = async (id) => {
 export const updateProduct = async (id, data) => {
   const updatedDoc = doc(db, "products", id);
   const res = await updateDoc(updatedDoc, data);
-
-  alert("Producto Actualizado");
+  if (res) return true; //use boolean to display alerts
 };

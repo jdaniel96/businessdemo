@@ -2,21 +2,9 @@ import { Route, Routes } from "react-router-dom";
 import HomePage from "./views/homePage";
 import ProductPage from "./views/productPage";
 import PaymentPage from "./views/paymentPage";
-import { db } from "./config/db";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { registerUser } from "./services/createUsers.service";
-import { login } from "./services/loginUsers.service";
-import { loginGoogle } from "./services/loginGoogle.service";
-import { collection, getDocs } from "firebase/firestore/lite";
-import { useState, useEffect } from "react";
-import { logOut } from "./services/logoutUsers.service";
+import { useState } from "react";
 import { app } from "./libs/firebase";
-import {
-  addProduct,
-  updateProduct,
-  deleteProduct,
-  getSpecificProduct,
-} from "./controllers/products.controller";
 import Dashboard from "./views/dashboard";
 
 function App() {
@@ -35,7 +23,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/product/:id" element={<ProductPage />} />
-        <Route path="/dasboard" element={<Dashboard />} />
+        <Route path="/dashboard" element={<Dashboard />} />
         {/* <Route path="*" element={<NotFound/>}/> */}
       </Routes>
     </>

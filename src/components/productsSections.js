@@ -5,9 +5,9 @@ import { getDocs } from "firebase/firestore/lite";
 import { useState, useEffect } from "react";
 import { collection } from "firebase/firestore/lite";
 
-function ProductsSections () {
-    const [products, setProducts] = useState([]); //Puedes usar "products" para obtener la lista de productos en forma de array de objetos
-    const productsCollection = collection(db, "products");
+function ProductsSections() {
+  const [products, setProducts] = useState([]); //Puedes usar "products" para obtener la lista de productos en forma de array de objetos
+  const productsCollection = collection(db, "products");
 
   useEffect(() => {
     const getDbProducts = async () => {
@@ -18,18 +18,27 @@ function ProductsSections () {
 
     getDbProducts();
   }, []);
-    return (
-        <section className="container-fluid d-flex flex-column justify-content-center align-items-center">
-            <div className="container-fluid">
-                <h2 className="mt-5">Popular products</h2>
-                <div class="mt-3 row row-cols-1 row-cols-md-2 row-cols-xl-3 row-cols-xxl-4 g-4">
-                    {products?.map((items) => 
-                        <ProductItems id={items?.id} title={items?.productName} price={items?.productPrice} img={items?.productPhoto} description={items?.productDescription}/>
-                    )}
-                </div>
-            </div>
-            </section>
-    )
+
+  console.log(products);
+  return (
+    <section className="container-fluid d-flex flex-column justify-content-center align-items-center">
+      <h2 className="mt-5 mb-5 ">Products</h2>
+      <div className="container-fluid d-flex content-center">
+        <div class="mt-3 d-flex gap-3 row justify-content-center justify-content-xl-around row-cols-xxl-3 row-cols-1 row-cols-md-2 row-cols-xl-3 row-cols-xxl-4 g-4">
+          {products?.map((items, index) => (
+            <ProductItems
+              key={index}
+              id={items?.id}
+              title={items?.productName}
+              price={items?.productPrice}
+              img={items?.productPhoto}
+              description={items?.productDescription}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 }
 
 export default ProductsSections;
