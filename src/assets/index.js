@@ -10,10 +10,12 @@ import ps4 from "./ps4pro.png"
 import ps5 from "./ps5.png"
 import tv from "./tv.png"
 import xiaomi from "./xiaomi.png"
+import userImg from "./userImg.jpg"
 
 export const imagenes = {
     img1: img1,
     img2: img2,
+    userImg: userImg
 }
 
 export const ItemsImg = {
