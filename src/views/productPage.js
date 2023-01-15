@@ -13,7 +13,6 @@ function ProductPage() {
     const productHand = async () => {
       const response = await getSpecificProduct(id);
       if (response) setProduct(response);
-      console.log("pPage", response);
     };
     productHand();
   }, []);
@@ -63,10 +62,10 @@ function ProductPage() {
               </div>
               <hr></hr>
               <h2>${product.productPrice}</h2>
-              <p>Lorem ipsum dolor sit amet</p>
+              <p>Only <span>15</span> left!</p>
               <hr></hr>
-              <div className="container-fluid">
-                <button
+              <div className="container-fluid  d-flex justify-content-between">
+              <button
                   className="border border-0 rounded-pill mt-3"
                   style={{
                     backgroundColor: "#f6f6f6",
@@ -79,9 +78,6 @@ function ProductPage() {
                 >
                   + 1 -
                 </button>
-              </div>
-
-              <div className="container-fluid  d-flex justify-content-between">
                 <button
                   className="border border-0 rounded-pill mt-3"
                   style={{
@@ -93,19 +89,6 @@ function ProductPage() {
                   }}
                 >
                   Buy Now
-                </button>
-                <button
-                  className="border rounded-pill mt-3"
-                  style={{
-                    backgroundColor: "white",
-                    height: "50px",
-                    width: "200px",
-                    borderColor: "#013d28",
-                    color: "#013d28",
-                    fontSize: "1.1rem",
-                  }}
-                >
-                  Add to Cart
                 </button>
               </div>
             </div>

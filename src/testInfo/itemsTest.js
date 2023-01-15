@@ -1,22 +1,22 @@
 import { ItemsImg } from "../assets/index"
 
 export const ItemsTest = [
-    {
-        id: "001",
-        title: "Iphone 14 pro",
-        img: ItemsImg.iphone,
-        note: "Lorem ipsum dolor sit amet",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
-        price: '780.00',
-    },
-    {
-        id: "002",
-        title: "Ipad mini 4",
-        img: ItemsImg.ipad,
-        note: "Lorem ipsum dolor sit amet",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
-        price: '630.00',
-    },
+    // {
+    //     id: "001",
+    //     title: "Iphone 14 pro",
+    //     img: ItemsImg.iphone,
+    //     note: "Lorem ipsum dolor sit amet",
+    //     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+    //     price: '780.00',
+    // },
+    // {
+    //     id: "002",
+    //     title: "Ipad mini 4",
+    //     img: ItemsImg.ipad,
+    //     note: "Lorem ipsum dolor sit amet",
+    //     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+    //     price: '630.00',
+    // },
     {
         id: "003",
         title: "JBL charge 5",
@@ -41,30 +41,30 @@ export const ItemsTest = [
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
         price: '250.00',
     },
-    {
-        id: "006",
-        title: "Play Station 5",
-        img: ItemsImg.ps5,
-        note: "Lorem ipsum dolor sit amet",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
-        price: '500.00',
-    },
-    {
-        id: "007",
-        title: "Xiaomi air",
-        img: ItemsImg.xiaomi,
-        note: "Lorem ipsum dolor sit amet",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
-        price: '700.00',
-    },
-    {
-        id: "008",
-        title: "Samsung Tv 4K",
-        img: ItemsImg.tv,
-        note: "Lorem ipsum dolor sit amet",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
-        price: '1480.00',
-    },
+    // {
+    //     id: "006",
+    //     title: "Play Station 5",
+    //     img: ItemsImg.ps5,
+    //     note: "Lorem ipsum dolor sit amet",
+    //     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+    //     price: '500.00',
+    // },
+    // {
+    //     id: "007",
+    //     title: "Xiaomi air",
+    //     img: ItemsImg.xiaomi,
+    //     note: "Lorem ipsum dolor sit amet",
+    //     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+    //     price: '700.00',
+    // },
+    // {
+    //     id: "008",
+    //     title: "Samsung Tv 4K",
+    //     img: ItemsImg.tv,
+    //     note: "Lorem ipsum dolor sit amet",
+    //     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+    //     price: '1480.00',
+    // },
     {
         id: "009",
         title: "Play Station 4 pro",
@@ -73,13 +73,13 @@ export const ItemsTest = [
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
         price: '200.00',
     },
-    {
-        id: "010",
-        title: "Imac",
-        img: ItemsImg.imac,
-        note: "Lorem ipsum dolor sit amet",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
-        price: '980.00',
-    }
+    // {
+    //     id: "010",
+    //     title: "Imac",
+    //     img: ItemsImg.imac,
+    //     note: "Lorem ipsum dolor sit amet",
+    //     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+    //     price: '980.00',
+    // }
     
 ]
