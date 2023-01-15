@@ -18,7 +18,6 @@ function ProductItems ({id,title,description, price, img}) {
                 <div className="d-flex">
                     <p><AiFillStar style={{color: "#09ab0c"}}/><AiFillStar style={{color: "#09ab0c"}}/><AiFillStar style={{color: "#09ab0c"}}/><AiFillStar style={{color: "#09ab0c"}}/><AiFillStar style={{color: "#09ab0c"}}/>(121)</p>
                 </div>
-                <button className="btn border border-secondary rounded-pill" style={{width: "8rem"}}>Add to Cart</button>
             </div>
             </div>
         </div>

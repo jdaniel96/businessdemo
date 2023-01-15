@@ -4,7 +4,7 @@ import DashboardNav from "../components/dashboardNav";
 
 function Dashboard () {
     return (
-        <div className="d-flex" style={{height: "125vh", width: "100%", backgroundColor: "#f8f9fd"}}>
+        <div className="d-flex" style={{height: "auto", width: "100%", backgroundColor: "#f8f9fd"}}>
             <DashboardNav/>
             <DashboardMain/>
         </div>

@@ -3,13 +3,12 @@ import HeroSection from "../components/heroSection";
 import NavBar from "../components/navBar";
 import ProductsSections from "../components/productsSections";
 
-function HomePage ({product}) {
-    console.log(product)
+function HomePage () {
     return (
         <main>
             <NavBar/>
             <HeroSection/>
-            <ProductsSections product={product}/>
+            <ProductsSections/>
         </main>
     )
 }

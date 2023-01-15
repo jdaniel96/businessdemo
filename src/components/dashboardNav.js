@@ -2,7 +2,7 @@ import React from "react";
 
 function DashboardNav () {
     return (
-        <aside className="bg-white" style={{width: "18rem", height: "100vh"}}>
+        <aside className="bg-white" style={{width: "18rem", height: "auto"}}>
             <div className="d-flex flex-column p-3 justify-content-between" style={{width: "100%", height: "60vh"}}>
             <a class="navbar-brand" style={{fontSize:"2rem"}} href="#">ShopCart</a>
             <div className="container-fluid d-flex justify-content-center">
