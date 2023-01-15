@@ -33,9 +33,6 @@ export const addProduct = async (data) => {
         "https://joadre.com/wp-content/uploads/2019/02/no-image.jpg",
       createdOn: Date.now(),
     });
-    if (res) {
-      alert("document added");
-    }
   } catch (err) {
     console.log(err, err.message, err.code);
     alert("❌ something wrong adding a product");

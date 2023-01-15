@@ -6,7 +6,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useState } from "react";
 import { app } from "./libs/firebase";
 import Dashboard from "./views/dashboard";
-
+import { analytics } from "./libs/firebase";
 function App() {
   const [user, setUser] = useState([]);
   const auth = getAuth(app);
@@ -18,6 +18,8 @@ function App() {
       // something
     }
   });
+
+  console.log("analytics", analytics);
   return (
     <>
       <Routes>
