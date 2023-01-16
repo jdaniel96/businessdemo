@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 function ProductItems({ id, title, description, price, img }) {
   return (
-    <div className="col flex-row d-flex justify-content-center align-items-center m-5">
+    <div className="col flex-row d-flex justify-content-center align-items-center">
       <div
         className="card border border-0"
         style={{ width: "21em", height: "auto" }}

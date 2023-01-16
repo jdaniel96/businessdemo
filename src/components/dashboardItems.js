@@ -10,6 +10,10 @@ import { BsFillTrashFill } from "react-icons/bs";
 import { IoBagAddSharp } from "react-icons/io5";
 import { addProduct, updateProduct } from "../controllers/products.controller";
 
+import { Modal, Button } from "react-bootstrap";
+import { deleteProduct } from "../controllers/products.controller";
+import { addStock } from "../controllers/products.controller";
+
 export const TopSellingItem = ({ title, description, price, img }) => {
   return (
     <div className="col d-flex justify-content-center align-items-center">
@@ -73,9 +77,10 @@ export const TopSelling = () => {
           className="rounded-3 d-flex align-items-center"
           style={{ height: "100%", width: "96.5%" }}
         >
-          {ItemsTest.map((item) => {
+          {ItemsTest.map((item, index) => {
             return (
               <TopSellingItem
+                key={index}
                 id={item.id}
                 title={item.title}
                 description={item.note}
@@ -103,7 +108,7 @@ export const StockTable = () => {
 
   return (
     <div className="ps-5 pe-5 mt-4">
-      <table class="table table-borderless table-hover">
+      <table className="table table-borderless table-hover">
         <thead>
           <tr>
             <th scope="col">Photo</th>
@@ -114,9 +119,9 @@ export const StockTable = () => {
           </tr>
         </thead>
         <tbody>
-          {products?.map((item) => {
+          {products?.map((item, index) => {
             return (
-              <tr>
+              <tr key={index}>
                 <th scope="row">
                   <div
                     className="border border-0 rounded-5"
@@ -204,9 +209,13 @@ export const ItemsTable = () => {
     };
     getDbProducts();
   }, []);
+
+  const [showDelete, setShowDelete] = useState(true);
+  const [showAddStock, setShowAddStock] = useState(false);
+
   return (
     <div className="ps-5 pe-5 mt-4">
-      <table class="table table-borderless table-hover">
+      <table className="table table-borderless table-hover">
         <thead>
           <tr>
             <th scope="col">Photo</th>
@@ -218,9 +227,65 @@ export const ItemsTable = () => {
           </tr>
         </thead>
         <tbody>
-          {products?.map((item) => {
+          {products?.map((item, index) => {
             return (
-              <tr>
+              <tr key={index}>
+                {showAddStock && (
+                  <Modal
+                    centered={true}
+                    onHide={setShowAddStock(false)}
+                    show={showAddStock}
+                  >
+                    <Modal.Header closeButton>
+                      <Modal.Title>Modal Title</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>Modal content goes here</Modal.Body>
+                    <Modal.Footer>
+                      <Button
+                        variant="secondary"
+                        onClick={() => setShowAddStock(false)}
+                      >
+                        Close
+                      </Button>
+                      {/* add input to specify amount of stock */}
+                      <Button
+                        onClick={() =>
+                          addStock(item.id, "quantity of stock to add here")
+                        }
+                        variant="primary"
+                      >
+                        Delete
+                      </Button>
+                    </Modal.Footer>
+                  </Modal>
+                )}
+                {showDelete && (
+                  <Modal
+                    centered={true}
+                    onHide={setShowDelete(false)}
+                    show={showDelete}
+                  >
+                    <Modal.Header closeButton>
+                      <Modal.Title>Modal Title</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>Modal content goes here</Modal.Body>
+                    <Modal.Footer>
+                      <Button
+                        variant="secondary"
+                        onClick={() => setShowDelete(false)}
+                      >
+                        Close
+                      </Button>
+                      <Button
+                        onClick={() => deleteProduct(item.id)}
+                        variant="primary"
+                      >
+                        Delete
+                      </Button>
+                    </Modal.Footer>
+                  </Modal>
+                )}
+
                 <th scope="row">
                   <div
                     className="border border-0 rounded-5"
@@ -251,6 +316,7 @@ export const ItemsTable = () => {
                   </button>
                   <button
                     className="rounded-circle border border-0 me-2 text-white pb-1"
+                    onClick={() => setShowAddStock(true)}
                     style={{
                       height: "3rem",
                       width: "3rem",
@@ -260,6 +326,7 @@ export const ItemsTable = () => {
                     <IoBagAddSharp />
                   </button>
                   <button
+                    onClick={() => setShowDelete(true)}
                     className="rounded-circle border border-0 me-2 text-white pb-1"
                     style={{
                       height: "3rem",

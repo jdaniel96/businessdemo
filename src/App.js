@@ -6,7 +6,6 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { app } from "./libs/firebase";
 import Dashboard from "./views/dashboard";
-import { analytics } from "./libs/firebase";
 import { getTotalSalesEarnings } from "./controllers/sales.controller";
 function App() {
   const [user, setUser] = useState([]);

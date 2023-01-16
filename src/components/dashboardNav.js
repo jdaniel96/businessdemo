@@ -9,7 +9,7 @@ function DashboardNav() {
         style={{ width: "inherit", height: "60vh" }}
       >
         <a
-          class="navbar-brand text-center"
+          className="navbar-brand text-center"
           style={{ fontSize: "2rem" }}
           href="/#"
         >
@@ -30,7 +30,7 @@ function DashboardNav() {
         </div>
         <div className="d-flex flex-column nav nav-pills">
           <button
-            class="nav-link active text-start"
+            className="nav-link active text-start"
             id="pills-home-tab"
             data-bs-toggle="pill"
             data-bs-target="#pills-home"
@@ -43,7 +43,7 @@ function DashboardNav() {
             Dashboard
           </button>
           <button
-            class="nav-link text-start"
+            className="nav-link text-start"
             id="pills-products-tab"
             data-bs-toggle="pill"
             data-bs-target="#pills-products"
@@ -56,7 +56,7 @@ function DashboardNav() {
             Products
           </button>
           <button
-            class="nav-link text-start"
+            className="nav-link text-start"
             id="pills-disabled-tab"
             data-bs-toggle="pill"
             data-bs-target="#pills-disabled"
@@ -70,7 +70,7 @@ function DashboardNav() {
             Account
           </button>
           <button
-            class="nav-link text-start"
+            className="nav-link text-start"
             id="pills-disabled-tab"
             data-bs-toggle="pill"
             data-bs-target="#pills-disabled"
