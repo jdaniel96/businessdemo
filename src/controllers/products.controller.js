@@ -72,6 +72,7 @@ export const deleteProduct = async (id) => {
  */
 
 export const updateProduct = async (id, data) => {
+  console.log(data)
   const updatedDoc = doc(db, "products", id);
   const res = await updateDoc(updatedDoc, data);
   if (res) return true; //use boolean to display alerts

@@ -9,6 +9,7 @@ import { AiFillStar, AiFillEdit } from "react-icons/ai";
 import { BsFillTrashFill } from "react-icons/bs";
 import { IoBagAddSharp } from "react-icons/io5";
 import { addProduct, updateProduct } from "../controllers/products.controller";
+import { Link } from "react-router-dom";
 
 export const TopSellingItem = ({ title, description, price, img }) => {
   return (
@@ -237,8 +238,9 @@ export const ItemsTable = () => {
                 <td className="pt-4">{item?.productName}</td>
                 <td className="pt-4">$ {item?.productPrice}</td>
                 <td className="pt-4">{item?.id}</td>
-                <td className="pt-4">15</td>
+                <td className="pt-4">{item?.stock}</td>
                 <td className="pt-4">
+                  <Link to={`/Editproduct/${item?.id}`}>
                   <button
                     className="rounded-circle border border-0 me-2 text-white pb-1"
                     style={{
@@ -248,7 +250,7 @@ export const ItemsTable = () => {
                     }}
                   >
                     <AiFillEdit />
-                  </button>
+                  </button></Link>
                   <button
                     className="rounded-circle border border-0 me-2 text-white pb-1"
                     style={{

@@ -7,6 +7,7 @@ import { useState } from "react";
 import { app } from "./libs/firebase";
 import Dashboard from "./views/dashboard";
 import { analytics } from "./libs/firebase";
+import EditProduct from "./views/editProduct";
 function App() {
   const [user, setUser] = useState([]);
   const auth = getAuth(app);
@@ -25,6 +26,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/product/:id" element={<ProductPage />} />
+        <Route path="/Editproduct/:id" element={<EditProduct/>} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/PaymentPage" element={<PaymentPage />} />
         {/* <Route path="*" element={<NotFound/>}/> */}
