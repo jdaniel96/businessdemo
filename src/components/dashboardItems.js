@@ -201,6 +201,8 @@ export const ItemsTable = () => {
   //     />
   //     <button onClick={() => addProduct(newProductData)}>create add</button>
   //   </>;
+  const [showDelete, setShowDelete] = useState(false);
+  const [showAddStock, setShowAddStock] = useState(false);
 
   useEffect(() => {
     const getDbProducts = async () => {
@@ -208,10 +210,12 @@ export const ItemsTable = () => {
       setProducts(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
     getDbProducts();
-  }, []);
 
-  const [showDelete, setShowDelete] = useState(true);
-  const [showAddStock, setShowAddStock] = useState(false);
+    return () => {
+      setShowDelete(false);
+      setShowAddStock(false);
+    };
+  }, []);
 
   return (
     <div className="ps-5 pe-5 mt-4">
@@ -227,119 +231,125 @@ export const ItemsTable = () => {
           </tr>
         </thead>
         <tbody>
-          {products?.map((item, index) => {
-            return (
-              <tr key={index}>
-                {showAddStock && (
-                  <Modal
-                    centered={true}
-                    onHide={setShowAddStock(false)}
-                    show={showAddStock}
+          {products?.map((item, index) => (
+            <tr key={index}>
+              {showAddStock && (
+                <Modal centered={true} show={showAddStock}>
+                  <Modal.Header
+                    closeButton
+                    onClick={() => setShowAddStock(false)}
                   >
-                    <Modal.Header closeButton>
-                      <Modal.Title>Modal Title</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>Modal content goes here</Modal.Body>
-                    <Modal.Footer>
-                      <Button
-                        variant="secondary"
-                        onClick={() => setShowAddStock(false)}
-                      >
-                        Close
-                      </Button>
-                      {/* add input to specify amount of stock */}
-                      <Button
-                        onClick={() =>
-                          addStock(item.id, "quantity of stock to add here")
-                        }
-                        variant="primary"
-                      >
-                        Delete
-                      </Button>
-                    </Modal.Footer>
-                  </Modal>
-                )}
-                {showDelete && (
-                  <Modal
-                    centered={true}
-                    onHide={setShowDelete(false)}
-                    show={showDelete}
+                    <Modal.Title>Adding Stock</Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body>
+                    <h1>Quantity of Stock to Add</h1>
+                    <input type={"text"} placeholder="Stock Quantity to Add" />
+                  </Modal.Body>
+                  <Modal.Footer>
+                    <Button
+                      variant="secondary"
+                      onClick={() => setShowAddStock(false)}
+                    >
+                      Close
+                    </Button>
+                    <Button
+                      onClick={() => deleteProduct(item.id)}
+                      variant="success"
+                    >
+                      Add Stock
+                    </Button>
+                  </Modal.Footer>
+                </Modal>
+              )}
+              {showDelete && (
+                <Modal centered={true} show={showDelete}>
+                  <Modal.Header
+                    closeButton
+                    onClick={() => setShowDelete(false)}
                   >
-                    <Modal.Header closeButton>
-                      <Modal.Title>Modal Title</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>Modal content goes here</Modal.Body>
-                    <Modal.Footer>
-                      <Button
-                        variant="secondary"
-                        onClick={() => setShowDelete(false)}
-                      >
-                        Close
-                      </Button>
-                      <Button
-                        onClick={() => deleteProduct(item.id)}
-                        variant="primary"
-                      >
-                        Delete
-                      </Button>
-                    </Modal.Footer>
-                  </Modal>
-                )}
+                    <Modal.Title
+                      style={{
+                        fontWeight: "bold",
+                        color: "red",
+                        textAlign: "center",
+                      }}
+                    >
+                      You are deleting this product! ⁉️
+                    </Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body>
+                    If you delete this product you won't be able to recover it!
+                  </Modal.Body>
+                  <Modal.Footer>
+                    <Button
+                      variant="secondary"
+                      onClick={() => setShowDelete(false)}
+                    >
+                      Close
+                    </Button>
+                    <Button
+                      onClick={() => deleteProduct(item.id)}
+                      variant="danger"
+                    >
+                      Delete
+                    </Button>
+                  </Modal.Footer>
+                </Modal>
+              )}
 
-                <th scope="row">
-                  <div
-                    className="border border-0 rounded-5"
-                    style={{
-                      height: "4rem",
-                      width: "4rem",
-                      backgroundImage: `url(${item?.productPhoto})`,
-                      backgroundSize: "cover",
-                      backgroundRepeat: "no-repeat",
-                      backgroundPosition: "center",
-                    }}
-                  ></div>
-                </th>
-                <td className="pt-4">{item?.productName}</td>
-                <td className="pt-4">$ {item?.productPrice}</td>
-                <td className="pt-4">{item?.id}</td>
-                <td className="pt-4">15</td>
-                <td className="pt-4">
-                  <button
-                    className="rounded-circle border border-0 me-2 text-white pb-1"
-                    style={{
-                      height: "3rem",
-                      width: "3rem",
-                      backgroundColor: "black",
-                    }}
-                  >
-                    <AiFillEdit />
-                  </button>
-                  <button
-                    className="rounded-circle border border-0 me-2 text-white pb-1"
-                    onClick={() => setShowAddStock(true)}
-                    style={{
-                      height: "3rem",
-                      width: "3rem",
-                      backgroundColor: "#00BD56",
-                    }}
-                  >
-                    <IoBagAddSharp />
-                  </button>
-                  <button
-                    onClick={() => setShowDelete(true)}
-                    className="rounded-circle border border-0 me-2 text-white pb-1"
-                    style={{
-                      height: "3rem",
-                      width: "3rem",
-                      backgroundColor: "red",
-                    }}
-                  >
-                    <BsFillTrashFill />
-                  </button>
-                </td>
-              </tr>
-            );
-          })}
+              <th scope="row">
+                <div
+                  className="border border-0 rounded-5"
+                  style={{
+                    height: "4rem",
+                    width: "4rem",
+                    backgroundImage: `url(${item?.productPhoto})`,
+                    backgroundSize: "cover",
+                    backgroundRepeat: "no-repeat",
+                    backgroundPosition: "center",
+                  }}
+                ></div>
+              </th>
+              <td className="pt-4">{item?.productName}</td>
+              <td className="pt-4">$ {item?.productPrice}</td>
+              <td className="pt-4">{item?.id}</td>
+              <td className="pt-4">15</td>
+              <td className="pt-4">
+                <button
+                  className="rounded-circle border border-0 me-2 text-white pb-1"
+                  style={{
+                    height: "3rem",
+                    width: "3rem",
+                    backgroundColor: "black",
+                  }}
+                >
+                  <AiFillEdit />
+                </button>
+                <button
+                  className="rounded-circle border border-0 me-2 text-white pb-1"
+                  onClick={() => setShowAddStock(true)}
+                  style={{
+                    height: "3rem",
+                    width: "3rem",
+                    backgroundColor: "#00BD56",
+                  }}
+                >
+                  <IoBagAddSharp />
+                </button>
+                <button
+                  onClick={() => setShowDelete(true)}
+                  className="rounded-circle border border-0 me-2 text-white pb-1"
+                  style={{
+                    height: "3rem",
+                    width: "3rem",
+                    backgroundColor: "red",
+                  }}
+                >
+                  <BsFillTrashFill />
+                </button>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>

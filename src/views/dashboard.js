@@ -15,7 +15,7 @@ function Dashboard() {
           id="pills-home"
           role="tabpanel"
           aria-labelledby="pills-home-tab"
-          tabindex="0"
+          tabIndex="0"
           style={{ margin: 0, padding: 0 }}
         >
           <DashboardInicio />
@@ -25,7 +25,7 @@ function Dashboard() {
           id="pills-products"
           role="tabpanel"
           aria-labelledby="pills-products-tab"
-          tabindex="0"
+          tabIndex="0"
           style={{ margin: 0, padding: 0 }}
         >
           <Products />
@@ -35,7 +35,7 @@ function Dashboard() {
           id="pills-disabled"
           role="tabpanel"
           aria-labelledby="pills-disabled-tab"
-          tabindex="0"
+          tabIndex="0"
         >
           ...
         </div>
@@ -44,7 +44,7 @@ function Dashboard() {
           id="pills-disabled"
           role="tabpanel"
           aria-labelledby="pills-disabled-tab"
-          tabindex="0"
+          tabIndex="0"
         >
           ...
         </div>
