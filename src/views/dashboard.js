@@ -9,23 +9,23 @@ function Dashboard() {
       style={{ height: "auto", width: "100%", backgroundColor: "#f8f9fd" }}
     >
       <DashboardNav />
-      <div class="tab-content container-fluid" id="pills-tabContent">
+      <div className="tab-content container-fluid" id="pills-tabContent">
         <div
-          class="tab-pane fade show active"
+          className="tab-pane fade show active"
           id="pills-home"
           role="tabpanel"
           aria-labelledby="pills-home-tab"
-          tabindex="0"
+          tabIndex="0"
           style={{ margin: 0, padding: 0 }}
         >
           <DashboardInicio />
         </div>
         <div
-          class="tab-pane fade"
+          className="tab-pane fade"
           id="pills-products"
           role="tabpanel"
           aria-labelledby="pills-products-tab"
-          tabindex="0"
+          tabIndex="0"
           style={{ margin: 0, padding: 0 }}
         >
           <Products />
@@ -46,16 +46,16 @@ function Dashboard() {
           id="pills-disabled"
           role="tabpanel"
           aria-labelledby="pills-disabled-tab"
-          tabindex="0"
+          tabIndex="0"
         >
           ...
         </div>
         <div
-          class="tab-pane fade"
+          className="tab-pane fade"
           id="pills-disabled"
           role="tabpanel"
           aria-labelledby="pills-disabled-tab"
-          tabindex="0"
+          tabIndex="0"
         >
           ...
         </div>

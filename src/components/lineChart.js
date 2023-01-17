@@ -31,6 +31,7 @@ export const LineChart = () => {
     };
     handlerSales();
   }, []);
+
   const options = {
     responsive: true,
     plugins: {
@@ -46,7 +47,7 @@ export const LineChart = () => {
     datasets: [
       {
         label: "Total Sales",
-        data: info.map((sale) => sale.productPrice),
+        data: info.map((sale) => sale.productQuantity),
         borderColor: "rgb(255, 99, 132)",
         backgroundColor: "rgba(255, 99, 132, 0.5)",
       },

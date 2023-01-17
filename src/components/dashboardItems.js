@@ -12,6 +12,10 @@ import { addProduct, updateProduct } from "../controllers/products.controller";
 import { Link } from "react-router-dom";
 import { getSalesHistory } from "../controllers/sales.controller";
 
+import { Modal, Button } from "react-bootstrap";
+import { deleteProduct } from "../controllers/products.controller";
+import { addStock } from "../controllers/products.controller";
+
 export const TopSellingItem = ({ title, description, price, img }) => {
   return (
     <div className="col d-flex justify-content-center align-items-center">
@@ -75,9 +79,10 @@ export const TopSelling = () => {
           className="rounded-3 d-flex align-items-center"
           style={{ height: "100%", width: "96.5%" }}
         >
-          {ItemsTest.map((item) => {
+          {ItemsTest.map((item, index) => {
             return (
               <TopSellingItem
+                key={index}
                 id={item.id}
                 title={item.title}
                 description={item.note}
@@ -105,7 +110,7 @@ export const StockTable = () => {
 
   return (
     <div className="ps-5 pe-5 mt-4">
-      <table class="table table-borderless table-hover">
+      <table className="table table-borderless table-hover">
         <thead>
           <tr>
             <th scope="col">Photo</th>
@@ -116,9 +121,9 @@ export const StockTable = () => {
           </tr>
         </thead>
         <tbody>
-          {products?.map((item) => {
+          {products?.map((item, index) => {
             return (
-              <tr>
+              <tr key={index}>
                 <th scope="row">
                   <div
                     className="border border-0 rounded-5"
@@ -198,6 +203,8 @@ export const ItemsTable = () => {
   //     />
   //     <button onClick={() => addProduct(newProductData)}>create add</button>
   //   </>;
+  const [showDelete, setShowDelete] = useState(false);
+  const [showAddStock, setShowAddStock] = useState(false);
 
   useEffect(() => {
     const getDbProducts = async () => {
@@ -205,10 +212,16 @@ export const ItemsTable = () => {
       setProducts(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
     getDbProducts();
+
+    return () => {
+      setShowDelete(false);
+      setShowAddStock(false);
+    };
   }, []);
+
   return (
     <div className="ps-5 pe-5 mt-4">
-      <table class="table table-borderless table-hover">
+      <table className="table table-borderless table-hover">
         <thead>
           <tr>
             <th scope="col">Photo</th>
@@ -276,6 +289,125 @@ export const ItemsTable = () => {
               </tr>
             );
           })}
+          {products?.map((item, index) => (
+            <tr key={index}>
+              {showAddStock && (
+                <Modal centered={true} show={showAddStock}>
+                  <Modal.Header
+                    closeButton
+                    onClick={() => setShowAddStock(false)}
+                  >
+                    <Modal.Title>Adding Stock</Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body>
+                    <h1>Quantity of Stock to Add</h1>
+                    <input type={"text"} placeholder="Stock Quantity to Add" />
+                  </Modal.Body>
+                  <Modal.Footer>
+                    <Button
+                      variant="secondary"
+                      onClick={() => setShowAddStock(false)}
+                    >
+                      Close
+                    </Button>
+                    <Button
+                      onClick={() => deleteProduct(item.id)}
+                      variant="success"
+                    >
+                      Add Stock
+                    </Button>
+                  </Modal.Footer>
+                </Modal>
+              )}
+              {showDelete && (
+                <Modal centered={true} show={showDelete}>
+                  <Modal.Header
+                    closeButton
+                    onClick={() => setShowDelete(false)}
+                  >
+                    <Modal.Title
+                      style={{
+                        fontWeight: "bold",
+                        color: "red",
+                        textAlign: "center",
+                      }}
+                    >
+                      You are deleting this product! ⁉️
+                    </Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body>
+                    If you delete this product you won't be able to recover it!
+                  </Modal.Body>
+                  <Modal.Footer>
+                    <Button
+                      variant="secondary"
+                      onClick={() => setShowDelete(false)}
+                    >
+                      Close
+                    </Button>
+                    <Button
+                      onClick={() => deleteProduct(item.id)}
+                      variant="danger"
+                    >
+                      Delete
+                    </Button>
+                  </Modal.Footer>
+                </Modal>
+              )}
+
+              <th scope="row">
+                <div
+                  className="border border-0 rounded-5"
+                  style={{
+                    height: "4rem",
+                    width: "4rem",
+                    backgroundImage: `url(${item?.productPhoto})`,
+                    backgroundSize: "cover",
+                    backgroundRepeat: "no-repeat",
+                    backgroundPosition: "center",
+                  }}
+                ></div>
+              </th>
+              <td className="pt-4">{item?.productName}</td>
+              <td className="pt-4">$ {item?.productPrice}</td>
+              <td className="pt-4">{item?.id}</td>
+              <td className="pt-4">15</td>
+              <td className="pt-4">
+                <button
+                  className="rounded-circle border border-0 me-2 text-white pb-1"
+                  style={{
+                    height: "3rem",
+                    width: "3rem",
+                    backgroundColor: "black",
+                  }}
+                >
+                  <AiFillEdit />
+                </button>
+                <button
+                  className="rounded-circle border border-0 me-2 text-white pb-1"
+                  onClick={() => setShowAddStock(true)}
+                  style={{
+                    height: "3rem",
+                    width: "3rem",
+                    backgroundColor: "#00BD56",
+                  }}
+                >
+                  <IoBagAddSharp />
+                </button>
+                <button
+                  onClick={() => setShowDelete(true)}
+                  className="rounded-circle border border-0 me-2 text-white pb-1"
+                  style={{
+                    height: "3rem",
+                    width: "3rem",
+                    backgroundColor: "red",
+                  }}
+                >
+                  <BsFillTrashFill />
+                </button>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
@@ -315,72 +447,3 @@ export const ItemsCrud = () => {
     </div>
   );
 };
-
-export const ProductsSales = () => {
-
-    const [info, setInfo] = useState([]);
-    useEffect(() => {
-        const handlerSales = async () => {
-        const data = await getSalesHistory();
-        setInfo(data);
-        };
-        handlerSales();
-    }, []);
-    return (
-        <div className="ps-5 pe-5 mt-4">
-      <table class="table table-borderless table-hover">
-        <thead>
-          <tr>
-            <th scope="col">Photo</th>
-            <th scope="col">Name</th>
-            <th scope="col">Price</th>
-            <th scope="col">Id</th>
-            <th scope="col">Amount Purchased</th>
-          </tr>
-        </thead>
-        <tbody>
-          {info?.map((item) => {
-            return (
-              <tr>
-                <th scope="row">
-                  <div
-                    className="border border-0 rounded-5"
-                    style={{
-                      height: "4rem",
-                      width: "4rem",
-                      backgroundImage: `url(${item?.productPhoto})`,
-                      backgroundSize: "cover",
-                      backgroundRepeat: "no-repeat",
-                      backgroundPosition: "center",
-                    }}
-                  ></div>
-                </th>
-                <td className="pt-4">{item?.productName}</td>
-                <td className="pt-4">$ {item?.productPrice}</td>
-                <td className="pt-4">{item?.id}</td>
-                <td className="pt-4">{item?.productQuantity}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-      </div>
-    )
-}
-
-export const HistoryProductsSales = () => {
-    return (
-        <div
-      className="d-flex mt-3 justify-content-evenly mb-5"
-      style={{ height: "auto", width: "100%", backgroundColor: "#f8f9fd" }}
-    >
-      <div
-        className="rounded-3"
-        style={{ height: "100%", width: "96.5%", backgroundColor: "white" }}
-      >
-        <h5 className="mt-5 ps-5">Stock Report</h5>
-        <ProductsSales/>
-      </div>
-    </div>
-    )
-}

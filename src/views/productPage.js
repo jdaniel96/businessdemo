@@ -28,7 +28,7 @@ function ProductPage() {
           <a> Categories / </a>
           <a> Categories </a>
         </div>
-        <div class="row row-cols-1 row-cols-lg-2 p-5">
+        <div className="row row-cols-1 row-cols-lg-2 p-5">
           <div className="col d-flex justify-content-center">
             <div
               className="rounded-3 d-flex justify-content-center align-items-center"
@@ -62,10 +62,12 @@ function ProductPage() {
               </div>
               <hr></hr>
               <h2>${product.productPrice}</h2>
-              <p>Only <span>15</span> left!</p>
+              <p>
+                Only <span>15</span> left!
+              </p>
               <hr></hr>
               <div className="container-fluid  d-flex justify-content-between">
-              <button
+                <button
                   className="border border-0 rounded-pill mt-3"
                   style={{
                     backgroundColor: "#f6f6f6",

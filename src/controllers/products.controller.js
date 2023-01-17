@@ -6,6 +6,7 @@ import {
   deleteDoc,
   updateDoc,
   getDoc,
+  getDocs,
 } from "firebase/firestore/lite";
 import { uploadProductPhoto } from "../utils/uploadPhoto";
 import { registerSale } from "./sales.controller";
@@ -40,6 +41,19 @@ export const addProduct = async (data) => {
   }
 };
 
+export const addStock = async (id, stockQuantity) => {
+  try {
+    const updatedDoc = doc(db, "products", id);
+    const res = await updateDoc(updatedDoc, { stock: stockQuantity });
+    if (res) {
+      alert("Stock Added ✅");
+    }
+    return res;
+  } catch (err) {
+    alert("something went wrong ❌");
+  }
+};
+
 export const getSpecificProduct = async (id) => {
   const productRef = doc(db, "products", id);
   const product = (await getDoc(productRef)).data();
@@ -50,16 +64,32 @@ export const buyProduct = async (id, quantity) => {
   const productRef = doc(db, "products", id);
   const product = (await getDoc(productRef)).data();
 
+  if (product.productSales === 0) {
+  }
   try {
-    await updateProduct(id, { ...product, stock: product.stock - quantity });
+    const res = await updateProduct(id, {
+      ...product,
+      stock: product?.stock - quantity,
+      productSales: product?.productSales + quantity,
+    });
+
+    if (res) {
+      const earnings = await updateProduct(id, {
+        productEarnings:
+          product.productSales === 0
+            ? product.productPrice * quantity
+            : product.productSales * product.productPrice,
+      });
+    }
     const response = await registerSale({
-      productName: product.productName,
-      productPrice: product.productPrice,
-      productPhoto: product.productPhoto,
+      productName: product?.productName,
+      productPrice: product?.productPrice,
+      productPhoto: product?.productPhoto,
       productQuantity: quantity,
     });
   } catch (err) {
-    alert("Something went wrong ❌", err);
+    alert("Something went wrong ❌");
+    console.log("error", err);
   }
 };
 
@@ -87,8 +117,11 @@ export const deleteProduct = async (id) => {
  */
 
 export const updateProduct = async (id, data) => {
-  console.log(data)
-  const updatedDoc = doc(db, "products", id);
-  const res = await updateDoc(updatedDoc, data);
-  if (res) return true; //use boolean to display alerts
+  try {
+    const updatedDoc = doc(db, "products", id);
+    const res = await updateDoc(updatedDoc, data);
+    return true; //use boolean to display alerts
+  } catch (err) {
+    console.log("in update product", err.message, err.code, err);
+  }
 };

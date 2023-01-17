@@ -1,25 +1,29 @@
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-import { getSalesHistory } from "../controllers/sales.controller";
+import { getDocs } from "firebase/firestore/lite";
+import { collection } from "firebase/firestore/lite";
+import { db } from "../config/db";
 import { useEffect, useState } from "react";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export const DoughnutChart = () => {
-  const [info, setInfo] = useState([]);
+  const productsCollection = collection(db, "products");
+  const [products, setProducts] = useState([]);
   useEffect(() => {
-    const handlerSales = async () => {
-      const data = await getSalesHistory();
-      setInfo(data);
+    const getDbProducts = async () => {
+      const data = await getDocs(productsCollection);
+      setProducts(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
-    handlerSales();
-  }, []);
 
+    getDbProducts();
+  }, []);
   const data = {
-    labels: info.map((sale) => sale.productName),
+    labels: products.map((sale) => sale.productName),
     datasets: [
       {
-        label: "Product Sales",
-        data: [12, 19, 3, 5, 2, 3],
+        label: "Amount Sold",
+
+        data: products.map((sale) => sale.productSales),
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",
           "rgba(54, 162, 235, 0.2)",
@@ -36,7 +40,7 @@ export const DoughnutChart = () => {
           "rgba(153, 102, 255, 1)",
           "rgba(255, 159, 64, 1)",
         ],
-        borderWidth: 1,
+        borderWidth: 2,
       },
     ],
   };

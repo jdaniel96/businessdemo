@@ -4,14 +4,17 @@ import { Link } from "react-router-dom";
 
 function NavBar() {
   return (
-    <nav class="navbar navbar-expand-lg bg-light" style={{ padding: "1em" }}>
-      <div class="container-fluid">
+    <nav
+      className="navbar navbar-expand-lg bg-light"
+      style={{ padding: "1em" }}
+    >
+      <div className="container-fluid">
         <AiOutlineShopping />
-        <Link class="navbar-brand me-5" to="/">
+        <Link className="navbar-brand me-5" to="/">
           Business Icon
         </Link>
         <button
-          class="navbar-toggler"
+          className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarScroll"
@@ -19,13 +22,13 @@ function NavBar() {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarScroll">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item dropdown me-4">
+        <div className="collapse navbar-collapse" id="navbarScroll">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <li className="nav-item dropdown me-4">
               <Link
-                class="nav-link dropdown-toggle"
+                className="nav-link dropdown-toggle"
                 href="#"
                 role="button"
                 data-bs-toggle="dropdown"
@@ -33,48 +36,48 @@ function NavBar() {
               >
                 Categories
               </Link>
-              <ul class="dropdown-menu">
+              <ul className="dropdown-menu">
                 <li>
-                  <Link class="dropdown-item" href="#">
+                  <Link className="dropdown-item" href="#">
                     Category 1
                   </Link>
                 </li>
                 <li>
-                  <Link class="dropdown-item" href="#">
+                  <Link className="dropdown-item" href="#">
                     Category 2
                   </Link>
                 </li>
                 <li>
-                  <hr class="dropdown-divider" />
+                  <hr className="dropdown-divider" />
                 </li>
                 <li>
-                  <Link class="dropdown-item" href="#">
+                  <Link className="dropdown-item" href="#">
                     Category 3
                   </Link>
                 </li>
               </ul>
             </li>
-            <li class="nav-item me-4">
-              <Link class="nav-link" href="#">
+            <li className="nav-item me-4">
+              <Link className="nav-link" href="#">
                 Deals
               </Link>
             </li>
-            <li class="nav-item me-4">
-              <Link class="nav-link" href="#">
+            <li className="nav-item me-4">
+              <Link className="nav-link" href="#">
                 Delivery ?
               </Link>
             </li>
           </ul>
           <div className="d-flex">
             <input
-              class="form-control me-2 rounded-pill border border-0"
+              className="form-control me-2 rounded-pill border border-0"
               type="search"
               placeholder="Search Product"
               aria-label="Search"
               style={{ minWidth: "350px", backgroundColor: "#EEEEEE" }}
             />
 
-            <button class="btn" type="submit">
+            <button className="btn" type="submit">
               Cart
             </button>
           </div>
