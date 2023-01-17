@@ -1,5 +1,5 @@
 import React from "react";
-import { DashboardInicio, Products } from "../components/dashboardMain";
+import { DashboardInicio, HistorySeles, Products } from "../components/dashboardMain";
 import DashboardNav from "../components/dashboardNav";
 
 function Dashboard() {
@@ -16,6 +16,7 @@ function Dashboard() {
           role="tabpanel"
           aria-labelledby="pills-home-tab"
           tabindex="0"
+          style={{ margin: 0, padding: 0 }}
         >
           <DashboardInicio />
         </div>
@@ -25,9 +26,21 @@ function Dashboard() {
           role="tabpanel"
           aria-labelledby="pills-products-tab"
           tabindex="0"
+          style={{ margin: 0, padding: 0 }}
         >
           <Products />
         </div>
+        <div
+          class="tab-pane fade"
+          id="pills-Sales"
+          role="tabpanel"
+          aria-labelledby="pills-Sales-tab"
+          tabindex="0"
+          style={{ margin: 0, padding: 0 }}
+        >
+          <HistorySeles/>
+        </div>
+
         <div
           class="tab-pane fade"
           id="pills-disabled"

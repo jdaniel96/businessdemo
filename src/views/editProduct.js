@@ -106,6 +106,8 @@ function EditProduct() {
                 type="number"
                 placeholder="0"
                 defaultValue={product.stock}
+                className="border border-0 ms-2"
+                style={{width: "4rem", fontSize: "1rem"}}
               /> left!</p>
               <hr></hr>
               <div className="container-fluid  d-flex justify-content-between">

@@ -10,6 +10,7 @@ import { BsFillTrashFill } from "react-icons/bs";
 import { IoBagAddSharp } from "react-icons/io5";
 import { addProduct, updateProduct } from "../controllers/products.controller";
 import { Link } from "react-router-dom";
+import { getSalesHistory } from "../controllers/sales.controller";
 
 export const TopSellingItem = ({ title, description, price, img }) => {
   return (
@@ -308,9 +309,78 @@ export const ItemsCrud = () => {
         className="rounded-3"
         style={{ height: "100%", width: "96.5%", backgroundColor: "white" }}
       >
-        <h5 className="mt-5 ps-5">Stock Report</h5>
+        <h5 className="mt-5 ps-5">Products</h5>
         <ItemsTable />
       </div>
     </div>
   );
 };
+
+export const ProductsSales = () => {
+
+    const [info, setInfo] = useState([]);
+    useEffect(() => {
+        const handlerSales = async () => {
+        const data = await getSalesHistory();
+        setInfo(data);
+        };
+        handlerSales();
+    }, []);
+    return (
+        <div className="ps-5 pe-5 mt-4">
+      <table class="table table-borderless table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Photo</th>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Id</th>
+            <th scope="col">Amount Purchased</th>
+          </tr>
+        </thead>
+        <tbody>
+          {info?.map((item) => {
+            return (
+              <tr>
+                <th scope="row">
+                  <div
+                    className="border border-0 rounded-5"
+                    style={{
+                      height: "4rem",
+                      width: "4rem",
+                      backgroundImage: `url(${item?.productPhoto})`,
+                      backgroundSize: "cover",
+                      backgroundRepeat: "no-repeat",
+                      backgroundPosition: "center",
+                    }}
+                  ></div>
+                </th>
+                <td className="pt-4">{item?.productName}</td>
+                <td className="pt-4">$ {item?.productPrice}</td>
+                <td className="pt-4">{item?.id}</td>
+                <td className="pt-4">{item?.productQuantity}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+      </div>
+    )
+}
+
+export const HistoryProductsSales = () => {
+    return (
+        <div
+      className="d-flex mt-3 justify-content-evenly mb-5"
+      style={{ height: "auto", width: "100%", backgroundColor: "#f8f9fd" }}
+    >
+      <div
+        className="rounded-3"
+        style={{ height: "100%", width: "96.5%", backgroundColor: "white" }}
+      >
+        <h5 className="mt-5 ps-5">Stock Report</h5>
+        <ProductsSales/>
+      </div>
+    </div>
+    )
+}

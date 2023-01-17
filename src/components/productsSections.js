@@ -7,6 +7,7 @@ import { collection } from "firebase/firestore/lite";
 
 function ProductsSections() {
   const [products, setProducts] = useState([]); //Puedes usar "products" para obtener la lista de productos en forma de array de objetos
+
   const productsCollection = collection(db, "products");
 
   useEffect(() => {
