@@ -9,12 +9,9 @@ function EditProduct() {
   const [product, setProduct] = useState({});
   const { id } = useParams();
 
-  console.log("e mentira",product.productName)
-
   const [newProductData, setNewProductData] = useState({
     productName: "",
     productDescription: "",
-    productPhoto: "",
     productPrice: "",
     stock: "",
   });
@@ -26,7 +23,7 @@ function EditProduct() {
 
   useEffect(() => {
     productHand();
-  }, [newProductData]);
+  }, [product]);
 
   return (
     <main>
@@ -35,7 +32,7 @@ function EditProduct() {
         <div class="row row-cols-1 row-cols-lg-2 p-5">
           <div className="col d-flex justify-content-center">
             <div
-              className="rounded-3 d-flex justify-content-center align-items-center"
+              className="rounded-3 d-flex justify-content-center align-items-center mb-5"
               style={{
                 height: "38rem",
                 width: "43rem",
@@ -59,7 +56,7 @@ function EditProduct() {
                 className="border border-0"
                 type="text"
                 placeholder="product name"
-                defaultValue={product.productName}
+                defaultValue={product?.productName}
                 style={{height: "4rem", width: "100%", fontSize: "2rem"}}
               />
               </div>
@@ -69,7 +66,7 @@ function EditProduct() {
                 setNewProductData({ ...newProductData, productDescription: e.target.value })
                 }
                 placeholder="product description"
-                defaultValue={product.productDescription}
+                defaultValue={product?.productDescription}
                 style={{width: "100%"}}
                 className="border border-0"
                 >
@@ -94,7 +91,7 @@ function EditProduct() {
                 }
                 type="number"
                 placeholder="product price"
-                defaultValue={product.productPrice}
+                defaultValue={product?.productPrice}
                 className="border border-0 ms-2"
                 style={{height: "3rem", width: "100%", fontSize: "1.5rem"}}
               />
@@ -105,14 +102,14 @@ function EditProduct() {
                 }
                 type="number"
                 placeholder="0"
-                defaultValue={product.stock}
+                defaultValue={product?.stock}
                 className="border border-0 ms-2"
                 style={{width: "4rem", fontSize: "1rem"}}
               /> left!</p>
               <hr></hr>
               <div className="container-fluid  d-flex justify-content-between">
               <button
-                  className="border border-0 rounded-pill mt-3"
+                  className="border border-0 rounded-pill mt-3 me-4"
                   style={{
                     backgroundColor: "#013d28",
                     height: "50px",
@@ -120,7 +117,7 @@ function EditProduct() {
                     color: "white",
                     fontSize: "1.1rem",
                   }}
-                  onClick={() => {updateProduct(id,newProductData);productHand()}}
+                  onClick={() => {updateProduct(id,newProductData); productHand()}}
                 >
                   Update
                 </button>
