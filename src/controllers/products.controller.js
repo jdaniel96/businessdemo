@@ -86,6 +86,7 @@ export const buyProduct = async (id, quantity) => {
       productPrice: product?.productPrice,
       productPhoto: product?.productPhoto,
       productQuantity: quantity,
+      productDelivered: true,
     });
   } catch (err) {
     alert("Something went wrong ❌");
@@ -124,4 +125,9 @@ export const updateProduct = async (id, data) => {
   } catch (err) {
     console.log("in update product", err.message, err.code, err);
   }
+};
+
+export const markProductDelivered = async () => {
+  const ordersCollection = collection(db, "activeOrders");
+  const data = await getDocs(ordersCollection);
 };

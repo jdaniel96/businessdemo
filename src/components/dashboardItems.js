@@ -18,63 +18,69 @@ import { getSalesHistory } from "../controllers/sales.controller";
 
 export const TopSellingItem = ({ title, description, price, img }) => {
   return (
-    <div class="card m-3 border border-0" style={{minWidth: "18rem", minHeight: "23rem"}}>
-       <div
-          className="border border-0 rounded-3 d-flex justify-content-center align-items-center"
-          style={{
-            height: "18rem",
-            width: "18rem",
-            backgroundColor: "#f6f6f6",
-          }}
+    <div
+      className="card m-3 border border-0"
+      style={{ minWidth: "18rem", minHeight: "23rem" }}
+    >
+      <div
+        className="border border-0 rounded-3 d-flex justify-content-center align-items-center"
+        style={{
+          height: "18rem",
+          width: "18rem",
+          backgroundColor: "#f6f6f6",
+        }}
+      >
+        <img
+          src={img}
+          style={{ height: "100%", width: "100%", objectFit: "cover" }}
+          alt="product"
+        />
+      </div>
+      <div className="p-2 text-start" style={{ width: "100%" }}>
+        <div
+          className="d-flex justify-content-between"
+          style={{ width: "100%" }}
         >
-          <img
-            src={img}
-            style={{ height: "100%", width: "100%", objectFit: "cover" }}
-            alt="product"
-          />
+          <h5>{title}</h5>
+          <b>
+            <sup>$</sup>
+            {price}
+          </b>
         </div>
-        <div className="p-2 text-start" style={{ width: "100%" }}>
-          <div
-            className="d-flex justify-content-between"
-            style={{ width: "100%" }}
-          >
-            <h5>{title}</h5>
-            <b>
-              <sup>$</sup>
-              {price}
-            </b>
-          </div>
-          <p>{description}</p>
-          <div className="d-flex">
-            <p>
-              <AiFillStar style={{ color: "#09ab0c" }} />
-              <AiFillStar style={{ color: "#09ab0c" }} />
-              <AiFillStar style={{ color: "#09ab0c" }} />
-              <AiFillStar style={{ color: "#09ab0c" }} />
-              <AiFillStar style={{ color: "#09ab0c" }} />
-              (121)
-            </p>
-          </div>
+        <p>{description}</p>
+        <div className="d-flex">
+          <p>
+            <AiFillStar style={{ color: "#09ab0c" }} />
+            <AiFillStar style={{ color: "#09ab0c" }} />
+            <AiFillStar style={{ color: "#09ab0c" }} />
+            <AiFillStar style={{ color: "#09ab0c" }} />
+            <AiFillStar style={{ color: "#09ab0c" }} />
+            (121)
+          </p>
         </div>
+      </div>
     </div>
   );
 };
 
 export const TopSelling = () => {
   return (
-    <div className="d-flex p-5 scollable" style={{height: "auto", width: "auto", overflow: "scroll"}}>
+    <div
+      className="d-flex p-5 scollable"
+      style={{ height: "auto", width: "auto", overflow: "scroll" }}
+    >
       {ItemsTest.map((item, index) => {
-            return (
-              <TopSellingItem
-                key={index}
-                id={item.id}
-                title={item.title}
-                description={item.note}
-                price={item.price}
-                img={item.img}
-              />
-            );
-          })}
+        return (
+          <TopSellingItem
+            key={index}
+            id={item.id}
+            title={item.title}
+            description={item.note}
+            price={item.price}
+            img={item.img}
+          />
+        );
+      })}
     </div>
   );
 };
@@ -91,42 +97,42 @@ export const StockTable = () => {
   }, []);
 
   return (
-      <table class="table table-borderless table-hover">
-        <thead>
-          <tr>
-            <th scope="col">Photo</th>
-            <th scope="col">Name</th>
-            <th scope="col">Price</th>
-            <th scope="col">Id</th>
-            <th scope="col">Stock</th>
-          </tr>
-        </thead>
-        <tbody>
-          {products?.map((item, index) => {
-            return (
-              <tr key={index}>
-                <th scope="row">
-                  <div
-                    className="border border-0 rounded-5 "
-                    style={{
-                      height: "4rem",
-                      width: "4rem",
-                      backgroundImage: `url(${item?.productPhoto})`,
-                      backgroundSize: "cover",
-                      backgroundRepeat: "no-repeat",
-                      backgroundPosition: "center",
-                    }}
-                  ></div>
-                </th>
-                <td className="pt-4">{item?.productName}</td>
-                <td className="pt-4">$ {item?.productPrice}</td>
-                <td className="pt-4">{item?.id}</td>
-                <td className="pt-4">{item?.stock}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+    <table className="table table-borderless table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Photo</th>
+          <th scope="col">Name</th>
+          <th scope="col">Price</th>
+          <th scope="col">Id</th>
+          <th scope="col">Stock</th>
+        </tr>
+      </thead>
+      <tbody>
+        {products?.map((item, index) => {
+          return (
+            <tr key={index}>
+              <th scope="row">
+                <div
+                  className="border border-0 rounded-5 "
+                  style={{
+                    height: "4rem",
+                    width: "4rem",
+                    backgroundImage: `url(${item?.productPhoto})`,
+                    backgroundSize: "cover",
+                    backgroundRepeat: "no-repeat",
+                    backgroundPosition: "center",
+                  }}
+                ></div>
+              </th>
+              <td className="pt-4">{item?.productName}</td>
+              <td className="pt-4">$ {item?.productPrice}</td>
+              <td className="pt-4">{item?.id}</td>
+              <td className="pt-4">{item?.stock}</td>
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
   );
 };
 
@@ -201,7 +207,7 @@ export const ItemsTable = () => {
 
   return (
     <div className="ps-5 pe-5 mt-4">
-      <table class="table table-borderless table-hover">
+      <table className="table table-borderless table-hover">
         <thead>
           <tr>
             <th scope="col">Photo</th>
@@ -342,16 +348,16 @@ export const ItemsTable = () => {
 
 export const StockReport = () => {
   return (
-    <div className="scollable" style={{height: '40vh', overflow: "scroll"}}>
-      <StockTable/>
+    <div className="scollable" style={{ height: "40vh", overflow: "scroll" }}>
+      <StockTable />
     </div>
   );
 };
 
 export const ItemsCrud = () => {
   return (
-    <div className="scollable" style={{height: '95vh', overflow: "scroll"}}>
-      <ItemsTable/>
+    <div className="scollable" style={{ height: "95vh", overflow: "scroll" }}>
+      <ItemsTable />
     </div>
   );
 };
@@ -359,55 +365,70 @@ export const ItemsCrud = () => {
 export const HistoryTable = () => {
   const [sales, setSales] = useState([]);
   useEffect(() => {
-    const salesHandler = async() => {
-      const sales = await getSalesHistory()
-      setSales(sales)
-    }
-    salesHandler()
+    const salesHandler = async () => {
+      const sales = await getSalesHistory();
+      setSales(sales);
+    };
+    salesHandler();
   }, []);
 
   return (
-    <table class="table table-borderless table-hover">
-        <thead>
-          <tr>
-            <th scope="col">Photo</th>
-            <th scope="col">Date</th>
-            <th scope="col">Name</th>
-            <th scope="col">Price</th>
-            <th scope="col">Quantity</th>
-          </tr>
-        </thead>
-        <tbody>
-          {sales?.map((item, index) => {
-            return (
-              <tr key={index}>
-                <th scope="row" className="d-flex justify-content-center">
-                  <div
-                    className="border border-0 rounded-5 "
+    <table className="table table-borderless table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Photo</th>
+          <th scope="col">Date</th>
+          <th scope="col">Name</th>
+          <th scope="col">Price</th>
+          <th scope="col">Quantity</th>
+        </tr>
+      </thead>
+      <tbody>
+        {sales?.map((item, index) => {
+          return (
+            <tr key={index}>
+              <th scope="row" className="d-flex justify-content-center">
+                <div
+                  className="border border-0 rounded-5 "
+                  style={{
+                    height: "4rem",
+                    width: "4rem",
+                  }}
+                >
+                  <img
+                    src={item?.productPhoto}
+                    className="border border-0 rounded-5"
                     style={{
-                      height: "4rem",
-                      width: "4rem",
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
                     }}
-                  >
-                    <img src={item?.productPhoto} className="border border-0 rounded-5" style={{width: "100%", height: "100%", objectFit: "cover"}} />
-                  </div>
-                </th>
-                <td className="pt-4">{item?.createdOn && new Date(item.createdOn).toLocaleDateString("en-GB", {month:"2-digit", day:"2-digit", year:"numeric"})}</td>
-                <td className="pt-4">$ {item?.productName}</td>
-                <td className="pt-4">{item?.productPrice}</td>
-                <td className="pt-4">{item?.productQuantity}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-  )
-}
+                  />
+                </div>
+              </th>
+              <td className="pt-4">
+                {item?.createdOn &&
+                  new Date(item.createdOn).toLocaleDateString("en-GB", {
+                    month: "2-digit",
+                    day: "2-digit",
+                    year: "numeric",
+                  })}
+              </td>
+              <td className="pt-4">$ {item?.productName}</td>
+              <td className="pt-4">{item?.productPrice}</td>
+              <td className="pt-4">{item?.productQuantity}</td>
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
+  );
+};
 
 export const HistorySalesAre = () => {
   return (
-    <div className="scollable" style={{height: '95vh', overflow: "scroll"}}>
-      <HistoryTable/>
+    <div className="scollable" style={{ height: "95vh", overflow: "scroll" }}>
+      <HistoryTable />
     </div>
-  )
-} 
+  );
+};

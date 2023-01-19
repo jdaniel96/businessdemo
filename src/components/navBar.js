@@ -10,7 +10,7 @@ function NavBar() {
     >
       <div className="container-fluid">
         <AiOutlineShopping />
-        <Link className="navbar-brand me-5" to="/">
+        <Link className="navbar-brand me-5 p-2" to="/">
           Business Icon
         </Link>
         <button

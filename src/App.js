@@ -5,7 +5,6 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { app } from "./libs/firebase";
 import Dashboard from "./views/dashboard";
-import { analytics } from "./libs/firebase";
 import EditProduct from "./views/editProduct";
 import { getTotalSalesEarnings } from "./controllers/sales.controller";
 function App() {
@@ -29,7 +28,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/product/:id" element={<ProductPage />} />
-        <Route path="/Editproduct/:id" element={<EditProduct/>} />
+        <Route path="/Editproduct/:id" element={<EditProduct />} />
         <Route path="/dashboard" element={<Dashboard />} />
         {/* <Route path="*" element={<NotFound/>}/> */}
       </Routes>
