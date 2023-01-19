@@ -31,6 +31,7 @@ function App() {
         <Route path="/Editproduct/:id" element={<EditProduct />} />
         <Route path="/dashboard" element={<Dashboard />} />
         {/* <Route path="*" element={<NotFound/>}/> */}
+        {/* //TODO add a fallback component to handle unmatched routes with a button to go back to home */}
       </Routes>
     </>
   );

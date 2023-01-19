@@ -20,14 +20,13 @@ function EditProduct() {
     productPhoto: "",
   });
 
-  const productHand = async () => {
-    const response = await getSpecificProduct(id);
-    if (response) setProduct(response);
-  };
-
   useEffect(() => {
+    const productHand = async () => {
+      const response = await getSpecificProduct(id);
+      if (response) setProduct(response);
+    };
     productHand();
-  }, [product]);
+  }, [id]);
 
   //TODO diomio queseto dió
   return (
@@ -146,7 +145,6 @@ function EditProduct() {
                   }}
                   onClick={() => {
                     updateProduct(id, newProductData);
-                    productHand();
                   }}
                 >
                   Update
