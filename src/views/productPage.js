@@ -31,7 +31,7 @@ function ProductPage() {
         <div className="row row-cols-1 row-cols-lg-2 p-5">
           <div className="col d-flex justify-content-center">
             <div
-              className="rounded-3 d-flex justify-content-center align-items-center"
+              className="rounded-3 d-flex justify-content-center align-items-center mb-5"
               style={{
                 height: "38rem",
                 width: "43rem",
@@ -68,7 +68,7 @@ function ProductPage() {
               <hr></hr>
               <div className="container-fluid  d-flex justify-content-between">
                 <button
-                  className="border border-0 rounded-pill mt-3"
+                  className="border border-0 rounded-pill mt-3 me-4"
                   style={{
                     backgroundColor: "#f6f6f6",
                     height: "50px",

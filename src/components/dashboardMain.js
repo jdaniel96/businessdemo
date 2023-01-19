@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { ItemsCrud, StockReport, TopSelling } from "./dashboardItems";
+import { HistorySalesAre, ItemsCrud, StockReport, TopSelling, TopSellingItem } from "./dashboardItems";
 import { DoughnutChart } from "../components/doughnutChart.js";
 import { LineChart } from "../components/lineChart.js";
 import { getTotalSalesEarnings } from "../controllers/sales.controller";
+
 export const DashboardInicio = () => {
   const [earnings, setEarnings] = useState(null);
   useEffect(() => {
@@ -13,68 +14,50 @@ export const DashboardInicio = () => {
     handler();
   }, []);
 
-  return (
-    <main className="container-fluid">
-      <div
-        style={{
-          width: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          backgroundColor: "#f8f9fd",
-          marginTop: "1em",
-        }}
-      >
-        <h1
-          style={{
-            display: "inline",
-            fontFamily: "sans-serif",
-          }}
-        >
-          Total Earnings:
-        </h1>
-        <h1
-          style={{
-            color: "green",
-
-            display: "inline",
-          }}
-        >
-          ${earnings}
-        </h1>
-      </div>
-      <div
-        className="d-flex mt-5 container flex-wrap justify-content-lg-center justify-content-md-center justify-content-center align-items-center align-items-lg-center align-items-md-center align-items-xl-center"
-        style={{
-          height: "auto",
-          width: "100%",
-          backgroundColor: "#f8f9fd",
-          justifyContent: "center",
-        }}
-      >
-        <div
-          className="rounded-3 col col-xl-4 col-12 d-flex justify-content-center"
-          style={{ height: "25em" }}
-        >
-          <DoughnutChart />
+  return (    
+    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabIndex="0" style={{minHeight: "100vh", backgroundColor: "#f8f9fd"}}>
+      <div class="row">
+        <div class="col-12 col-md-7 ps-4 pt-4">
+          <div className="bg-white rounded-3 d-flex justify-content-center align-items-center" style={{ height: "25em" }}><LineChart /></div>
         </div>
-        <div
-          className="rounded-3 col col-xl-8 col-12 d-flex justify-content-center"
-          style={{ height: "25em" }}
-        >
-          <LineChart />
+        <div class="col-12 col-md-5 pe-4 pt-4">
+          <div className="bg-white rounded-3 d-flex justify-content-center align-items-center" style={{ height: "25em" }}><DoughnutChart /></div>
         </div>
+        <div class="col-12 p-2">
+          <div className="m-3 p-3" style={{height: "auto"}}>
+              <TopSelling/>
+          </div>
+        </div> 
+        <div class="col-12 p-4">
+          <div className="bg-white rounded-3">
+              <StockReport />
+          </div>
+        </div> 
       </div>
-      <TopSelling />
-      <StockReport />
-    </main>
+    </div>
   );
 };
 
 export const Products = () => {
   return (
-    <main className="container-fluid" style={{ minHeight: "100vh" }}>
-      <ItemsCrud />
-    </main>
+    <div class="tab-pane fade"  id="pills-products" role="tabpanel" aria-labelledby="pills-products-tab" tabIndex="0" style={{minHeight: "100vh", backgroundColor: "#f8f9fd"}}>
+      <div class="col p-4">
+          <div className="bg-white rounded-3" >
+              <ItemsCrud />
+          </div>
+        </div> 
+    </div>
   );
 };
+
+export const HistorySeles = () => {
+  return (
+    <div class="tab-pane fade"  id="pills-sales" role="tabpanel" aria-labelledby="pills-sales-tab" tabIndex="0" style={{minHeight: "100vh", backgroundColor: "#f8f9fd"}}>
+      <div class="col p-4">
+          <div className="bg-white rounded-3" >
+            <HistorySalesAre/>
+          </div>
+        </div> 
+    </div>
+  )
+}
