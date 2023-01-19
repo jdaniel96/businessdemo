@@ -4,7 +4,6 @@ import {
   ItemsCrud,
   StockReport,
   TopSelling,
-  TopSellingItem,
 } from "./dashboardItems";
 import { DoughnutChart } from "../components/doughnutChart.js";
 import { LineChart } from "../components/lineChart.js";

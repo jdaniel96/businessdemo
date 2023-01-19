@@ -1,5 +1,4 @@
 import React from "react";
-import { imagenes } from "../assets";
 
 function DashboardNav() {
   return (

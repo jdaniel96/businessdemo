@@ -15,18 +15,18 @@ function ProductPage() {
       if (response) setProduct(response);
     };
     productHand();
-  }, []);
+  }, [id]);
 
   return (
     <main>
       <NavBar />
       <section>
         <div className="p-5">
-          <a> Categories / </a>
-          <a> Categories / </a>
-          <a> Categories / </a>
-          <a> Categories / </a>
-          <a> Categories </a>
+          <a href="#/"> Categories / </a>
+          <a href="#/"> Categories / </a>
+          <a href="#/"> Categories / </a>
+          <a href="#/"> Categories / </a>
+          <a href="#/"> Categories </a>
         </div>
         <div className="row row-cols-1 row-cols-lg-2 p-5">
           <div className="col d-flex justify-content-center">

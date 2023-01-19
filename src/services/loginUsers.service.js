@@ -8,7 +8,6 @@ export const login = async (
   const auth = getAuth(app);
   try {
     const response = await signInWithEmailAndPassword(auth, email, password);
-    console.log("response user login", response.user);
   } catch (err) {
     console.log("in login", err.message, err.code);
   }

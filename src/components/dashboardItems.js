@@ -1,5 +1,4 @@
 import React from "react";
-import ProductItems from "./productCard";
 import { ItemsTest } from "../testInfo/itemsTest";
 import { db } from "../config/db";
 import { getDocs } from "firebase/firestore/lite";
@@ -8,12 +7,9 @@ import { collection } from "firebase/firestore/lite";
 import { AiFillStar, AiFillEdit } from "react-icons/ai";
 import { BsFillTrashFill } from "react-icons/bs";
 import { IoBagAddSharp } from "react-icons/io5";
-import { addProduct, updateProduct } from "../controllers/products.controller";
-
-import { Modal, Button, Card } from "react-bootstrap";
+import { Modal, Button } from "react-bootstrap";
 import { deleteProduct } from "../controllers/products.controller";
-import { addStock } from "../controllers/products.controller";
-import { Await, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { getSalesHistory } from "../controllers/sales.controller";
 
 export const TopSellingItem = ({ title, description, price, img }) => {
@@ -94,7 +90,7 @@ export const StockTable = () => {
       setProducts(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
     getDbProducts();
-  }, []);
+  }, [productsCollection]);
 
   return (
     <table className="table table-borderless table-hover">
@@ -139,56 +135,6 @@ export const StockTable = () => {
 export const ItemsTable = () => {
   const [products, setProducts] = useState([]);
   const productsCollection = collection(db, "products");
-
-  //   const [newProductData, setNewProductData] = useState({
-  //     productName: "",
-  //     productDescription: "",
-  //     productPhoto: "",
-  //     productPrice: "",
-  //     stock: "",
-  //   });
-
-  //   <>
-  //     <input
-  //       onChange={(e) =>
-  //         setNewProductData({ ...newProductData, productName: e.target.value })
-  //       }
-  //       type="text"
-  //       placeholder="product name"
-  //     />
-  //     <input
-  //       onChange={(e) =>
-  //         setNewProductData({
-  //           ...newProductData,
-  //           productDescription: e.target.value,
-  //         })
-  //       }
-  //       type="text"
-  //       placeholder="product description"
-  //     />
-  //     <input
-  //       onChange={(e) =>
-  //         setNewProductData({ ...newProductData, productPhoto: e.target.value })
-  //       }
-  //       type="file"
-  //       placeholder="product photo"
-  //     />
-  //     <input
-  //       onChange={(e) =>
-  //         setNewProductData({ ...newProductData, productPrice: e.target.value })
-  //       }
-  //       type="text"
-  //       placeholder="product price"
-  //     />
-  //     <input
-  //       onChange={(e) =>
-  //         setNewProductData({ ...newProductData, stock: e.target.value })
-  //       }
-  //       type="text"
-  //       placeholder="product stock"
-  //     />
-  //     <button onClick={() => addProduct(newProductData)}>create add</button>
-  //   </>;
   const [showDelete, setShowDelete] = useState(false);
   const [showAddStock, setShowAddStock] = useState(false);
 
@@ -203,7 +149,7 @@ export const ItemsTable = () => {
       setShowDelete(false);
       setShowAddStock(false);
     };
-  }, []);
+  }, [productsCollection]);
 
   return (
     <div className="ps-5 pe-5 mt-4">
@@ -403,6 +349,7 @@ export const HistoryTable = () => {
                       height: "100%",
                       objectFit: "cover",
                     }}
+                    alt="product"
                   />
                 </div>
               </th>
