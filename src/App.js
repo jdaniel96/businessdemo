@@ -32,6 +32,9 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         {/* <Route path="*" element={<NotFound/>}/> */}
         {/* //TODO add a fallback component to handle unmatched routes with a button to go back to home */}
+        {/* //TODO Add Carousel component to main page to display to user the top 5 most sold products */}
+        {/*Add a functiona search bar to main page to search for products based of price or name or category */}
+        {/* add a component to query sales by date or quantity */}
       </Routes>
     </>
   );

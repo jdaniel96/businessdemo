@@ -3,9 +3,10 @@ import NavBar from "../components/navBar";
 import { AiFillStar } from "react-icons/ai";
 import { useParams } from "react-router-dom";
 import { getSpecificProduct } from "../controllers/products.controller";
-
+import { buyProduct } from "../controllers/products.controller";
 function ProductPage() {
-  const [product, setProduct] = useState({});
+  const [product, setProduct] = useState(null);
+  const [quantity, setQuantity] = useState(1);
 
   const { id } = useParams();
 
@@ -17,6 +18,13 @@ function ProductPage() {
     productHand();
   }, [id]);
 
+  useEffect(() => {
+    const unmount = () => {
+      setQuantity(1);
+    };
+
+    return unmount;
+  });
   return (
     <main>
       <NavBar />
@@ -89,6 +97,7 @@ function ProductPage() {
                     color: "white",
                     fontSize: "1.1rem",
                   }}
+                  onClick={() => buyProduct(id, quantity)}
                 >
                   Buy Now
                 </button>
