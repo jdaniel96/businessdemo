@@ -111,23 +111,29 @@ export const StockTable = () => {
         {products?.map((item, index) => {
           return (
             <tr key={index}>
-              <th scope="row">
-                <div
+              <th scope="row" className="d-flex justify-content-center">
+              <div
                   className="border border-0 rounded-5 "
                   style={{
                     height: "4rem",
                     width: "4rem",
-                    backgroundImage: `url(${item?.productPhoto})`,
-                    backgroundSize: "cover",
-                    backgroundRepeat: "no-repeat",
-                    backgroundPosition: "center",
                   }}
-                ></div>
+                >
+                  <img
+                    src={item?.productPhoto}
+                    className="border border-0 rounded-5"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                  />
+                </div>
               </th>
               <td className="pt-4">{item?.productName}</td>
               <td className="pt-4">$ {item?.productPrice}</td>
               <td className="pt-4">{item?.id}</td>
-              <td className="pt-4">{item?.stock}</td>
+              <td className="pt-4">15</td>
             </tr>
           );
         })}
@@ -139,56 +145,6 @@ export const StockTable = () => {
 export const ItemsTable = () => {
   const [products, setProducts] = useState([]);
   const productsCollection = collection(db, "products");
-
-  //   const [newProductData, setNewProductData] = useState({
-  //     productName: "",
-  //     productDescription: "",
-  //     productPhoto: "",
-  //     productPrice: "",
-  //     stock: "",
-  //   });
-
-  //   <>
-  //     <input
-  //       onChange={(e) =>
-  //         setNewProductData({ ...newProductData, productName: e.target.value })
-  //       }
-  //       type="text"
-  //       placeholder="product name"
-  //     />
-  //     <input
-  //       onChange={(e) =>
-  //         setNewProductData({
-  //           ...newProductData,
-  //           productDescription: e.target.value,
-  //         })
-  //       }
-  //       type="text"
-  //       placeholder="product description"
-  //     />
-  //     <input
-  //       onChange={(e) =>
-  //         setNewProductData({ ...newProductData, productPhoto: e.target.value })
-  //       }
-  //       type="file"
-  //       placeholder="product photo"
-  //     />
-  //     <input
-  //       onChange={(e) =>
-  //         setNewProductData({ ...newProductData, productPrice: e.target.value })
-  //       }
-  //       type="text"
-  //       placeholder="product price"
-  //     />
-  //     <input
-  //       onChange={(e) =>
-  //         setNewProductData({ ...newProductData, stock: e.target.value })
-  //       }
-  //       type="text"
-  //       placeholder="product stock"
-  //     />
-  //     <button onClick={() => addProduct(newProductData)}>create add</button>
-  //   </>;
   const [showDelete, setShowDelete] = useState(false);
   const [showAddStock, setShowAddStock] = useState(false);
 
@@ -285,24 +241,30 @@ export const ItemsTable = () => {
                 </Modal>
               )}
 
-              <th scope="row">
-                <div
-                  className="border border-0 rounded-5"
+              <th scope="row" className="d-flex justify-content-evenly align-items-center">
+              <div
+                  className="border border-0 rounded-5 "
                   style={{
                     height: "4rem",
                     width: "4rem",
-                    backgroundImage: `url(${item?.productPhoto})`,
-                    backgroundSize: "cover",
-                    backgroundRepeat: "no-repeat",
-                    backgroundPosition: "center",
                   }}
-                ></div>
+                >
+                  <img
+                    src={item?.productPhoto}
+                    className="border border-0 rounded-5"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                  />
+                </div>
               </th>
-              <td className="pt-4">{item?.productName}</td>
-              <td className="pt-4">$ {item?.productPrice}</td>
-              <td className="pt-4">{item?.id}</td>
-              <td className="pt-4">15</td>
-              <td className="pt-4">
+              <td className="">{item?.productName}</td>
+              <td className="">$ {item?.productPrice}</td>
+              <td className="">{item?.id}</td>
+              <td className="">15</td>
+              <td className="">
                 <Link to={`/Editproduct/${item?.id}`}>
                   <button
                     className="rounded-circle border border-0 me-2 text-white pb-1"

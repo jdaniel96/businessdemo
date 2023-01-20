@@ -7,6 +7,7 @@ import { app } from "./libs/firebase";
 import Dashboard from "./views/dashboard";
 import EditProduct from "./views/editProduct";
 import { getTotalSalesEarnings } from "./controllers/sales.controller";
+import AddProduct from "./views/addProduct";
 function App() {
   const [user, setUser] = useState([]);
   const auth = getAuth(app);
@@ -28,6 +29,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/product/:id" element={<ProductPage />} />
+        <Route path="/AddProduct" element={<AddProduct/>} />
         <Route path="/Editproduct/:id" element={<EditProduct />} />
         <Route path="/dashboard" element={<Dashboard />} />
         {/* <Route path="*" element={<NotFound/>}/> */}
