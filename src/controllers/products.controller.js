@@ -80,6 +80,8 @@ export const buyProduct = async (id, quantity) => {
             ? product.productPrice * quantity
             : product.productSales * product.productPrice,
       });
+
+      alert("Product Bought Successfully ✅");
     }
     const response = await registerSale({
       productName: product?.productName,

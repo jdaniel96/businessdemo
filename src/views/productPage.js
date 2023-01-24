@@ -48,7 +48,7 @@ function ProductPage() {
               }}
             >
               <img
-                src={product.productPhoto}
+                src={product?.productPhoto}
                 style={{ height: "100%", width: "100%", objectFit: "cover" }}
                 alt="product detail"
               />
@@ -56,9 +56,9 @@ function ProductPage() {
           </div>
           <div className="col d-flex justify-content-center align-items-center">
             <div style={{ height: "43rem", width: "35rem" }}>
-              <h2>{product.productName}</h2>
+              <h2>{product?.productName}</h2>
               <b>Sobre este artículo</b>
-              <p>{product.productDescription}</p>
+              <p>{product?.productDescription}</p>
               <div className="d-flex">
                 <p>
                   <AiFillStar style={{ color: "#09ab0c" }} />
@@ -92,7 +92,7 @@ function ProductPage() {
                     color: "white",
                     fontSize: "1.1rem",
                   }}
-                  onClick={() => buyProduct(id, quantity)}
+                  onClick={() => buyProduct(id, 49)}
                 >
                   Buy Now
                 </button>
