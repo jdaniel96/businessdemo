@@ -4,10 +4,9 @@ import { db } from "../config/db";
 import { getDocs } from "firebase/firestore/lite";
 import { useState, useEffect } from "react";
 import { collection } from "firebase/firestore/lite";
-import { buyProduct } from "../controllers/products.controller";
 
 function ProductsSections() {
-  const [products, setProducts] = useState([]); //Puedes usar "products" para obtener la lista de productos en forma de array de objetos
+  const [products, setProducts] = useState([]);
 
   const productsCollection = collection(db, "products");
 
@@ -18,7 +17,7 @@ function ProductsSections() {
     };
 
     getDbProducts();
-  }, []);
+  }, [productsCollection]);
 
   return (
     <section className="container-fluid d-flex flex-column justify-content-center align-items-center">

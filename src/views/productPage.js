@@ -3,9 +3,10 @@ import NavBar from "../components/navBar";
 import { AiFillStar } from "react-icons/ai";
 import { useParams } from "react-router-dom";
 import { getSpecificProduct } from "../controllers/products.controller";
-
+import { buyProduct } from "../controllers/products.controller";
 function ProductPage() {
   const [product, setProduct] = useState({});
+  const [quantity, setQuantity] = useState(1);
 
   const { id } = useParams();
 
@@ -15,18 +16,26 @@ function ProductPage() {
       if (response) setProduct(response);
     };
     productHand();
-  }, []);
+  }, [id]);
 
+  useEffect(() => {
+    const unmount = () => {
+      setQuantity(1);
+    };
+
+    return unmount;
+  });
+  console.log(quantity)
   return (
     <main>
       <NavBar />
       <section>
         <div className="p-5">
-          <a> Categories / </a>
-          <a> Categories / </a>
-          <a> Categories / </a>
-          <a> Categories / </a>
-          <a> Categories </a>
+          <a href="#/"> Categories / </a>
+          <a href="#/"> Categories / </a>
+          <a href="#/"> Categories / </a>
+          <a href="#/"> Categories / </a>
+          <a href="#/"> Categories </a>
         </div>
         <div className="row row-cols-1 row-cols-lg-2 p-5">
           <div className="col d-flex justify-content-center">
@@ -67,19 +76,13 @@ function ProductPage() {
               </p>
               <hr></hr>
               <div className="container-fluid  d-flex justify-content-between">
-                <button
-                  className="border border-0 rounded-pill mt-3 me-4"
-                  style={{
-                    backgroundColor: "#f6f6f6",
-                    height: "50px",
-                    width: "200px",
-                    borderColor: "#013d28",
-                    color: "#013d28",
-                    fontSize: "1.1rem",
-                  }}
-                >
-                  + 1 -
-                </button>
+                <input
+                  type={"number"}
+                  onChange={(e) =>
+                    setQuantity(e.target.value)
+                  }
+                  defaultValue={quantity}
+                />
                 <button
                   className="border border-0 rounded-pill mt-3"
                   style={{
@@ -89,6 +92,7 @@ function ProductPage() {
                     color: "white",
                     fontSize: "1.1rem",
                   }}
+                  onClick={() => buyProduct(id, quantity)}
                 >
                   Buy Now
                 </button>

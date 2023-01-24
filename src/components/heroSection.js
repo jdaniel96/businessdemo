@@ -7,8 +7,12 @@ function HeroSection() {
       className="d-flex justify-content-center align-items-center row row-cols-1 row-cols-md-2"
       style={{ backgroundColor: "#fcf0e3", height: "auto", width: "100%" }}
     >
-      <div className="col" style={{ miHheight: "40vh" }}>
-        <img src={imagenes.img2} style={{ height: "100%" }} />
+      <div className="col" style={{ minHeight: "40vh" }}>
+        <img
+          src={imagenes.img2}
+          style={{ height: "100%", width: "100%" }}
+          alt="hero assets"
+        />
       </div>
       <div className="col ps-5" style={{ minHeight: "40vh" }}>
         <p style={{ fontSize: "3.8rem", color: "#013d28" }}>

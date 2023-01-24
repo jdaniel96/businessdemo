@@ -4,7 +4,6 @@ import {
   ItemsCrud,
   StockReport,
   TopSelling,
-  TopSellingItem,
 } from "./dashboardItems";
 import { DoughnutChart } from "../components/doughnutChart.js";
 import { LineChart } from "../components/lineChart.js";
@@ -31,6 +30,14 @@ export const DashboardInicio = () => {
       style={{ minHeight: "100vh", backgroundColor: "#f8f9fd" }}
     >
       <div className="row">
+        <div className="col-12 col-md-5 pe-1 pt-4">
+          <div
+            className="bg-white rounded-3 d-flex justify-content-center align-items-center"
+            style={{ height: "25em" }}
+          >
+            <DoughnutChart />
+          </div>
+        </div>
         <div className="col-12 col-md-7 ps-4 pt-4">
           <div
             className="bg-white rounded-3 d-flex justify-content-center align-items-center"
@@ -39,14 +46,7 @@ export const DashboardInicio = () => {
             <LineChart />
           </div>
         </div>
-        <div className="col-12 col-md-5 pe-4 pt-4">
-          <div
-            className="bg-white rounded-3 d-flex justify-content-center align-items-center"
-            style={{ height: "25em" }}
-          >
-            <DoughnutChart />
-          </div>
-        </div>
+
         <div className="col-12 p-2">
           <div className="m-3 p-3" style={{ height: "auto" }}>
             <TopSelling />

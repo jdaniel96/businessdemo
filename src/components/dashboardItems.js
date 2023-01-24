@@ -1,5 +1,4 @@
 import React from "react";
-import ProductItems from "./productCard";
 import { ItemsTest } from "../testInfo/itemsTest";
 import { db } from "../config/db";
 import { getDocs } from "firebase/firestore/lite";
@@ -8,12 +7,9 @@ import { collection } from "firebase/firestore/lite";
 import { AiFillStar, AiFillEdit } from "react-icons/ai";
 import { BsFillTrashFill } from "react-icons/bs";
 import { IoBagAddSharp } from "react-icons/io5";
-import { addProduct, updateProduct } from "../controllers/products.controller";
-
-import { Modal, Button, Card } from "react-bootstrap";
+import { Modal, Button } from "react-bootstrap";
 import { deleteProduct } from "../controllers/products.controller";
-import { addStock } from "../controllers/products.controller";
-import { Await, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { getSalesHistory } from "../controllers/sales.controller";
 
 export const TopSellingItem = ({ title, description, price, img }) => {
@@ -94,7 +90,7 @@ export const StockTable = () => {
       setProducts(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
     getDbProducts();
-  }, []);
+  }, [productsCollection]);
 
   return (
     <table className="table table-borderless table-hover">
@@ -133,7 +129,7 @@ export const StockTable = () => {
               <td className="pt-4">{item?.productName}</td>
               <td className="pt-4">$ {item?.productPrice}</td>
               <td className="pt-4">{item?.id}</td>
-              <td className="pt-4">15</td>
+              <td className="pt-4">{item?.stock}</td>
             </tr>
           );
         })}
@@ -159,7 +155,7 @@ export const ItemsTable = () => {
       setShowDelete(false);
       setShowAddStock(false);
     };
-  }, []);
+  }, [productsCollection]);
 
   return (
     <div className="ps-5 pe-5 mt-4">
@@ -263,7 +259,7 @@ export const ItemsTable = () => {
               <td className="">{item?.productName}</td>
               <td className="">$ {item?.productPrice}</td>
               <td className="">{item?.id}</td>
-              <td className="">15</td>
+              <td className="">{item?.stock}</td>
               <td className="">
                 <Link to={`/Editproduct/${item?.id}`}>
                   <button
@@ -365,6 +361,7 @@ export const HistoryTable = () => {
                       height: "100%",
                       objectFit: "cover",
                     }}
+                    alt="product"
                   />
                 </div>
               </th>
