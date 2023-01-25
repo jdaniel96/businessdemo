@@ -107,18 +107,24 @@ export const StockTable = () => {
         {products?.map((item, index) => {
           return (
             <tr key={index}>
-              <th scope="row">
-                <div
+              <th scope="row" className="d-flex justify-content-center">
+              <div
                   className="border border-0 rounded-5 "
                   style={{
                     height: "4rem",
                     width: "4rem",
-                    backgroundImage: `url(${item?.productPhoto})`,
-                    backgroundSize: "cover",
-                    backgroundRepeat: "no-repeat",
-                    backgroundPosition: "center",
                   }}
-                ></div>
+                >
+                  <img
+                    src={item?.productPhoto}
+                    className="border border-0 rounded-5"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                  />
+                </div>
               </th>
               <td className="pt-4">{item?.productName}</td>
               <td className="pt-4">$ {item?.productPrice}</td>
@@ -231,24 +237,30 @@ export const ItemsTable = () => {
                 </Modal>
               )}
 
-              <th scope="row">
-                <div
-                  className="border border-0 rounded-5"
+              <th scope="row" className="d-flex justify-content-evenly align-items-center">
+              <div
+                  className="border border-0 rounded-5 "
                   style={{
                     height: "4rem",
                     width: "4rem",
-                    backgroundImage: `url(${item?.productPhoto})`,
-                    backgroundSize: "cover",
-                    backgroundRepeat: "no-repeat",
-                    backgroundPosition: "center",
                   }}
-                ></div>
+                >
+                  <img
+                    src={item?.productPhoto}
+                    className="border border-0 rounded-5"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                  />
+                </div>
               </th>
-              <td className="pt-4">{item?.productName}</td>
-              <td className="pt-4">$ {item?.productPrice}</td>
-              <td className="pt-4">{item?.id}</td>
-              <td className="pt-4">15</td>
-              <td className="pt-4">
+              <td className="">{item?.productName}</td>
+              <td className="">$ {item?.productPrice}</td>
+              <td className="">{item?.id}</td>
+              <td className="">{item?.stock}</td>
+              <td className="">
                 <Link to={`/Editproduct/${item?.id}`}>
                   <button
                     className="rounded-circle border border-0 me-2 text-white pb-1"

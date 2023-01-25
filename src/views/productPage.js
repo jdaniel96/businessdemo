@@ -25,6 +25,7 @@ function ProductPage() {
 
     return unmount;
   });
+  console.log(quantity)
   return (
     <main>
       <NavBar />
@@ -75,19 +76,13 @@ function ProductPage() {
               </p>
               <hr></hr>
               <div className="container-fluid  d-flex justify-content-between">
-                <button
-                  className="border border-0 rounded-pill mt-3 me-4"
-                  style={{
-                    backgroundColor: "#f6f6f6",
-                    height: "50px",
-                    width: "200px",
-                    borderColor: "#013d28",
-                    color: "#013d28",
-                    fontSize: "1.1rem",
-                  }}
-                >
-                  + 1 -
-                </button>
+                <input
+                  type={"number"}
+                  onChange={(e) =>
+                    setQuantity(e.target.value)
+                  }
+                  defaultValue={quantity}
+                />
                 <button
                   className="border border-0 rounded-pill mt-3"
                   style={{
